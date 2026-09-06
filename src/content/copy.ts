@@ -18,14 +18,15 @@ export const steps = [
   { n: '06', t: 'Confidence', q: 'What is verified, inferred, contradicted, or unresolved?', s: 'Every record scored · every unresolved record reported as unresolved, never guessed' },
 ];
 
-export const receive = {
-  sheet: ['Original record', 'Normalized company identity', 'Verified supplier role', 'Product and specification match', 'Supporting sources', 'Evidence notes', 'Confidence score', 'Risk flags', 'Recommended next action'],
-  pdf: ['Overall dataset health', 'Most common failure modes', 'High-confidence records', 'Records requiring human review', 'Structural gaps in the dataset', 'Recommended remediation priorities'],
-};
+export const products = [
+  { n: '01', t: 'Verified Evidence Register', d: 'Every record normalized, classified, sourced, confidence-scored, risk-flagged, and assigned a recommended action.' },
+  { n: '02', t: 'Executive Decision Brief', d: 'Dataset health, recurring failure patterns, structural gaps, review priorities, and recommended remediation.' },
+  { n: '03', t: 'Exception Queue', d: 'Unsupported, contradicted, duplicated, and unresolved records separated for human review.' },
+];
 
 export const pilot = {
-  provide: ['The supplier dataset (sheet, CSV, or export)', 'Product or category context', 'Required geography', 'Your acceptance criteria'],
-  deliver: ['Audited Excel or Google Sheet', 'Record-level evidence with source links', 'Classification and confidence scoring', 'Exception queue for human review', 'Two-page executive PDF', 'One clarification round'],
+  provide: ['The supplier dataset', 'Product or category context', 'Required geography', 'Your acceptance criteria'],
+  deliver: ['Verified Evidence Register', 'Executive Decision Brief', 'Exception Queue', 'Record-level evidence with sources', 'Classification and confidence scoring', 'One clarification round'],
   exclude: ['No supplier outreach', 'No commercial negotiation', 'No confidential or paid-database claims unless you provide authorised access', 'No guarantee that every record can be verified', 'Unresolved records are reported explicitly, never guessed'],
 };
 
@@ -40,5 +41,5 @@ export const method = [
   { t: 'Verify', d: 'Each record against public evidence. Every call gets a source.' },
   { t: 'Challenge', d: 'Try to break each verified call with a contradicting source.' },
   { t: 'Second-pass QA', d: 'Re-read the exception queue cold, a day later.' },
-  { t: 'Deliver', d: 'Sheet, PDF, and one round of clarification.' },
+  { t: 'Deliver', d: 'Register, brief, exception queue, and one round of clarification.' },
 ];

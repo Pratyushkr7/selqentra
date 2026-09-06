@@ -56,7 +56,7 @@ export const sample: Rec[] = [
     product: 'Exact grade match', evidence: 'Same plant as R-019', confidence: 0.79, risk: 'Duplicate legal entity', action: 'Merge with R-019. One supplier, not two.',
     trail: [
       { date: '2026-05', kind: 'Registry', note: 'Shares registered address and two directors with "Arundel Polymers Ltd" (record R-019).', type: 'supports' },
-      { date: '2026-03', kind: 'Own domain', note: 'Both entities resolve to the same website and the same SDS PDFs.', type: 'supports' },
+      { date: '2026-03', kind: 'Own domain', note: 'Both entities resolve to the same website and the same SDS documents.', type: 'supports' },
     ],
   },
   {
