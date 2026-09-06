@@ -9,17 +9,18 @@ async function run(name, opts, actions) {
   page.on('console', m => { if (m.type()==='error') errors.push(m.text()); else if (m.type()==='warning') warns.push(m.text()); });
   page.on('pageerror', e => errors.push('PAGEERROR ' + e.message));
   await page.goto(url, { waitUntil: 'networkidle' });
-  await page.waitForTimeout(1200);
+  await page.waitForTimeout(4200);
   const r = await actions(page);
   results[name] = { errors, warns: warns.slice(0,5), ...r };
   await browser.close();
 }
+const clipped = async (page) => page.evaluate(() => { let n=[]; document.querySelectorAll('h1,h2,h3,.big,.claim').forEach(e => { if (e.scrollWidth > e.clientWidth + 2) n.push(e.textContent.slice(0,30)); }); return n; });
 const overflow = async (page) => page.evaluate(() => ({ docW: document.documentElement.scrollWidth, winW: window.innerWidth, overflow: document.documentElement.scrollWidth > window.innerWidth + 1 }));
-const hasCanvas = async (page) => page.evaluate(() => !!document.querySelector('.panel canvas'));
-const fallback = async (page) => page.evaluate(() => !!document.querySelector('.panel .fallback'));
+const hasCanvas = async (page) => page.evaluate(() => !!document.querySelector('.matrix canvas'));
+const fallback = async (page) => page.evaluate(() => !!document.querySelector('.matrix .fallback'));
 
 await run('desktop', { viewport: { width: 1440, height: 900 } }, async (page) => {
-  const out = { overflow: await overflow(page), canvas: await hasCanvas(page) };
+  const out = { overflow: await overflow(page), canvas: await hasCanvas(page), clipped: await clipped(page) };
   await page.screenshot({ path: '/tmp/shots/d-hero.png' });
   // scroll through sections, screenshot each
   for (const id of ['problem','system','sample','receive','pilot','fit','method','contact']) {
@@ -28,9 +29,10 @@ await run('desktop', { viewport: { width: 1440, height: 900 } }, async (page) =>
     await page.screenshot({ path: `/tmp/shots/d-${id}.png` });
   }
   // mid-system scroll
-  await page.evaluate(() => { const el = document.querySelector('.step[data-i], .step'); const s = document.getElementById('system'); window.scrollTo({ top: s.offsetTop + s.offsetHeight*0.45 }); });
+  await page.evaluate(() => { const s = document.getElementById('system'); window.scrollTo({ top: s.offsetTop + s.offsetHeight*0.5 }); });
   await page.waitForTimeout(900);
   await page.screenshot({ path: '/tmp/shots/d-system-mid.png' });
+  const diagramOn = await page.evaluate(() => document.querySelector('.diagram .dh b').textContent);
   // sample interaction
   await page.evaluate(() => window.scrollTo({ top: document.getElementById('sample').offsetTop }));
   await page.waitForTimeout(600);
@@ -60,11 +62,11 @@ await run('desktop', { viewport: { width: 1440, height: 900 } }, async (page) =>
   const sent = await page.evaluate(() => !!document.querySelector('.isent'));
   await page.screenshot({ path: '/tmp/shots/d-sent.png' });
   const dead = await page.evaluate(() => Array.from(document.querySelectorAll('a[href]')).map(a => a.getAttribute('href')).filter(h => h === '#' || h === '' || h === '#contact-details'));
-  return { ...out, filtered, expanded, kbExpanded, ctas: [...new Set(ctas)], intakeValidation: errShown, intakeSent: sent, deadAnchors: dead };
+  return { ...out, diagramOn, filtered, expanded, kbExpanded, ctas: [...new Set(ctas)], intakeValidation: errShown, intakeSent: sent, deadAnchors: dead };
 });
 
 await run('mobile', { viewport: { width: 390, height: 844 }, deviceScaleFactor: 2, isMobile: true, hasTouch: true }, async (page) => {
-  const out = { overflow: await overflow(page), canvas: await hasCanvas(page) };
+  const out = { overflow: await overflow(page), canvas: await hasCanvas(page), clipped: await clipped(page) };
   await page.screenshot({ path: '/tmp/shots/m-hero.png' });
   for (const id of ['problem','sample','pilot','contact']) {
     await page.evaluate((id) => window.scrollTo({ top: document.getElementById(id).offsetTop - 10 }), id);
