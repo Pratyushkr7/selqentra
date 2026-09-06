@@ -29,7 +29,7 @@ export function Intake() {
     `Acceptance criteria — what would make this useful: ${f.criteria || '—'}`,
     f.link ? `Reference link: ${f.link}` : '',
     '',
-    'Please confirm scope and send the invoice. I will send the 30-record sample on payment.',
+    'Please confirm scope and send the invoice. I will share the 30 records on payment.',
   ].filter((l) => l !== undefined).join('\n'), [f]);
 
   const submit = (e: FormEvent) => {

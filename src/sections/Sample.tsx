@@ -17,9 +17,10 @@ export const Sample = forwardRef<HTMLElement>(function Sample(_, ref) {
 
   return (
     <section id="sample" ref={ref} aria-labelledby="h-sample">
+      <div className="wrap">
       <div className="label reveal">03 — Sample audit</div>
       <h2 id="h-sample" className="h-l reveal">Inspect the work before you buy it.</h2>
-      <p className="lede reveal" style={{ marginTop: 22 }}>Six records in the structure every client receives. Open a row to see the evidence trail behind the call — dated, typed, and honest about what it does and does not prove.</p>
+      <p className="lede reveal" style={{ marginTop: 22 }}>Six records in the structure of the Verified Evidence Register. Open a row to see the evidence trail behind the call — dated, typed, and honest about what it does and does not prove.</p>
       <div className="demo-tag reveal" role="note"><i aria-hidden="true" />Demonstration dataset — fictional entities, representative audit structure</div>
 
       <div className="filters reveal" role="group" aria-label="Filter records">
@@ -58,6 +59,7 @@ export const Sample = forwardRef<HTMLElement>(function Sample(_, ref) {
         </div>
       ); })()}
       <p className="tkeys">Keyboard: ↑ ↓ move between records · Enter opens the evidence trail · Tab reaches the filters</p>
+      </div>
     </section>
   );
 });
