@@ -1,32 +1,26 @@
 import { forwardRef } from 'react';
-import { pilot } from '../content/copy';
 import { Button } from '../ui/Button';
-import { links, config } from '../config';
+import { links } from '../config';
 
 export const Pilot = forwardRef<HTMLElement>(function Pilot(_, ref) {
   return (
     <section id="pilot" ref={ref} aria-labelledby="h-pilot">
       <div className="wrap">
-        <div className="label reveal">05 — The founding pilot</div>
-        <h2 id="h-pilot" className="h-l reveal">One fixed price. One engagement. No subscription.</h2>
-        <p className="lede reveal" style={{ marginTop: 22 }}>Small enough to approve on a card. Large enough to tell you whether your dataset can be trusted.</p>
+        <div className="label reveal">05 — The free pilot</div>
+        <h2 id="h-pilot" className="h-l reveal">Test the precision on a product you actually buy.</h2>
+        <p className="lede reveal" style={{ marginTop: 22 }}>One product, fully worked, at no cost. You judge the landscape against what you already know. If it tells you something you didn't, we talk about the rest.</p>
         <div className="commercial reveal">
-          <div className="top">
-            <div><span className="label">Records</span><div className="big">{config.pilot.records}</div></div>
-            <div><span className="label">Hours</span><div className="big">{config.pilot.hours}</div></div>
-            <div><span className="label">Fixed price</span><div className="big o">{config.pilot.price}</div></div>
-          </div>
-          <div className="cols3">
-            <div className="col"><h4>You provide</h4><ul>{pilot.provide.map((x) => <li key={x}>{x}</li>)}</ul></div>
-            <div className="col in"><h4 className="on">You receive</h4><ul>{pilot.deliver.map((x) => <li key={x}>{x}</li>)}</ul></div>
-            <div className="col ex"><h4>Not included</h4><ul>{pilot.exclude.map((x) => <li key={x}>{x}</li>)}</ul></div>
+          <div className="top three">
+            <div><span className="label">You bring</span><div className="bigt">One product you buy today</div><p>Name, CAS, grade or form, application, volume, destination. The SDS or TDS if you have it.</p></div>
+            <div><span className="label on">You receive</span><div className="bigt">Its verified source landscape</div><p>Manufacturers, distributors and traders — classified on evidence, with the trade flows behind them and a recommendation.</p></div>
+            <div><span className="label">Then</span><div className="bigt">A short call</div><p>We walk the map together. Further products are scoped and priced individually — every landscape is different.</p></div>
           </div>
           <div className="foot">
             <div className="ctas">
-              <Button href={links.start()}>Start the paid pilot</Button>
-              <Button href={links.scope()} variant="ghost">Ask a scope question</Button>
+              <Button href={links.demo()}>Book a free pilot</Button>
+              <Button href={links.question()} variant="ghost">Ask a question first</Button>
             </div>
-            <p className="note">Scope confirmed within one working day. The {config.pilot.hours}-hour clock starts when payment and records have both arrived.</p>
+            <p className="note">No outreach to suppliers on your behalf. No contact lists. Where public evidence does not support a call, the record says so.</p>
           </div>
         </div>
       </div>

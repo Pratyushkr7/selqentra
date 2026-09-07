@@ -1,7 +1,7 @@
 import { forwardRef, useMemo, useRef, useState, type KeyboardEvent } from 'react';
 import { sample, filters, type Rec } from '../content/sample';
 
-const statusTag = (r: Rec) => r.status === 'verified' ? <span className="tag ok">Verified</span> : r.status === 'review' ? <span className="tag rev">Needs review</span> : <span className="tag bad">Unsupported</span>;
+const statusTag = (r: Rec) => r.status === 'verified' ? <span className="tag ok">Classified</span> : r.status === 'review' ? <span className="tag rev">Open question</span> : <span className="tag bad">Unverifiable</span>;
 
 export const Sample = forwardRef<HTMLElement>(function Sample(_, ref) {
   const [f, setF] = useState<string>('all');
@@ -18,10 +18,10 @@ export const Sample = forwardRef<HTMLElement>(function Sample(_, ref) {
   return (
     <section id="sample" ref={ref} aria-labelledby="h-sample">
       <div className="wrap">
-      <div className="label reveal">03 — Sample audit</div>
-      <h2 id="h-sample" className="h-l reveal">Inspect the work before you buy it.</h2>
-      <p className="lede reveal" style={{ marginTop: 22 }}>Six records in the structure of the Verified Evidence Register. Open a row to see the evidence trail behind the call — dated, typed, and honest about what it does and does not prove.</p>
-      <div className="demo-tag reveal" role="note"><i aria-hidden="true" />Demonstration dataset — fictional entities, representative audit structure</div>
+      <div className="label reveal">03 — Sample landscape</div>
+      <h2 id="h-sample" className="h-l reveal">Inspect a landscape before you ask for one.</h2>
+      <p className="lede reveal" style={{ marginTop: 22 }}>Six sources in the structure of the Verified Source Map. Open a row to see the evidence trail behind the classification — dated, typed, and honest about what it does and does not prove.</p>
+      <div className="demo-tag reveal" role="note"><i aria-hidden="true" />Demonstration landscape — fictional entities, representative structure</div>
 
       <div className="filters reveal" role="group" aria-label="Filter records">
         {filters.map((x) => { const n = sample.filter(x.test).length; return (
@@ -32,7 +32,7 @@ export const Sample = forwardRef<HTMLElement>(function Sample(_, ref) {
       <div className="twrap reveal">
         <table className="audit">
           <thead><tr>
-            <th scope="col">Record</th><th scope="col" className="hide-c">Country</th><th scope="col">Claimed</th><th scope="col">Verified</th><th scope="col">Product match</th><th scope="col" className="hide-c">Evidence</th><th scope="col">Confidence</th><th scope="col">Status / risk</th><th scope="col">Recommended action</th>
+            <th scope="col">Source</th><th scope="col" className="hide-c">Country</th><th scope="col">Presents as</th><th scope="col">Classified as</th><th scope="col">Product match</th><th scope="col" className="hide-c">Evidence</th><th scope="col">Confidence</th><th scope="col">Confidence / note</th><th scope="col">Recommended use</th>
           </tr></thead>
           <tbody>
             {rows.length === 0 && <tr><td colSpan={7} className="empty">No records match this filter.</td></tr>}
@@ -58,7 +58,7 @@ export const Sample = forwardRef<HTMLElement>(function Sample(_, ref) {
           </div>
         </div>
       ); })()}
-      <p className="tkeys">Keyboard: ↑ ↓ move between records · Enter opens the evidence trail · Tab reaches the filters</p>
+      <p className="tkeys">Keyboard: ↑ ↓ move between sources · Enter opens the evidence trail · Tab reaches the filters</p>
       </div>
     </section>
   );

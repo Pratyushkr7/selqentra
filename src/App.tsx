@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react';
 import { Nav } from './sections/Nav';
 import { Hero } from './sections/Hero';
+import { Walkthrough } from './sections/Walkthrough';
 import { Problem } from './sections/Problem';
-import { System } from './sections/System';
 import { Sample } from './sections/Sample';
 import { Receive } from './sections/Receive';
 import { Pilot } from './sections/Pilot';
@@ -10,24 +10,15 @@ import { Fit, Method, Close } from './sections/Rest';
 import { useLenis } from './hooks/useLenis';
 import { useReveal } from './hooks/useReveal';
 import { useReducedMotion } from './hooks/useReducedMotion';
-import { links, config } from './config';
-
-function detectWebGL(): boolean {
-  try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch { return false; }
-}
+import { links } from './config';
 
 export default function App() {
   const reduced = useReducedMotion();
-  const [webgl, setWebgl] = useState<boolean>(true);
   const [showSticky, setShowSticky] = useState(false);
-  useEffect(() => { setWebgl(detectWebGL()); }, []);
-  const live = !reduced && webgl;
-
   useLenis(!reduced);
   const root = useRef<HTMLDivElement>(null);
   useReveal(root);
-
-  const hero = useRef<HTMLElement>(null), problem = useRef<HTMLElement>(null), system = useRef<HTMLElement>(null), sample = useRef<HTMLElement>(null), receive = useRef<HTMLElement>(null), pilot = useRef<HTMLElement>(null), fitR = useRef<HTMLElement>(null), methodR = useRef<HTMLElement>(null), closeR = useRef<HTMLElement>(null);
+  const hero = useRef<HTMLElement>(null), problem = useRef<HTMLElement>(null), sample = useRef<HTMLElement>(null), receive = useRef<HTMLElement>(null), pilot = useRef<HTMLElement>(null), fitR = useRef<HTMLElement>(null), methodR = useRef<HTMLElement>(null), closeR = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const el = hero.current; if (!el) return;
@@ -39,9 +30,16 @@ export default function App() {
     <div ref={root}>
       <Nav />
       <main id="main">
-        <Hero ref={hero} live={live} />
+        <Hero ref={hero} />
+        <section className="walksec" aria-labelledby="h-walk">
+          <div className="wrap center">
+            <div className="label reveal">How a landscape is built</div>
+            <h2 id="h-walk" className="h-l reveal">From the product you buy to the people who make it.</h2>
+            <p className="lede reveal" style={{ marginTop: 18 }}>Scroll through one landscape end to end. Switch the sample product to see how the shape of the market changes.</p>
+          </div>
+          <div className="wrap"><Walkthrough active={!reduced} /></div>
+        </section>
         <Problem ref={problem} />
-        <System ref={system} active={!reduced} />
         <Sample ref={sample} />
         <Receive ref={receive} />
         <Pilot ref={pilot} />
@@ -50,7 +48,7 @@ export default function App() {
         <Close ref={closeR} />
       </main>
       <div className={`sticky-cta ${showSticky ? 'show' : ''}`} aria-hidden={!showSticky}>
-        <a className="btn primary sm" href={links.start()}>Start a {config.pilot.price} pilot</a>
+        <a className="btn primary sm" href={links.demo()}>Book a free pilot</a>
         <a className="btn ghost sm" href={links.sample()}>Sample</a>
       </div>
     </div>

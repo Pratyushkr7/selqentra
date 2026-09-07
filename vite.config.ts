@@ -21,6 +21,6 @@ export default defineConfig(({ mode }) => ({
   build: {
     target: 'es2020',
     cssCodeSplit: true,
-    rollupOptions: { output: { manualChunks: { three: ['three'], gsap: ['gsap', 'gsap/ScrollTrigger'] } } },
+    rollupOptions: { output: { manualChunks: { gsap: ['gsap', 'gsap/ScrollTrigger'] } } },
   },
 }));

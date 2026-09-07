@@ -6,40 +6,42 @@ export const failures = [
   { claimed: 'One supplier', found: 'Two legal entities, one plant. Competitive tension is illusory.' },
   { claimed: 'Source cited', found: 'Source returns 404, or was last updated in 2019.' },
   { claimed: 'Plant in stated region', found: 'Registered office only. Production location unknown.' },
-  { claimed: 'Conclusion supported', found: 'The source exists. It does not say what the record says it says.' },
+  { claimed: 'Global producer', found: 'Appears in analyst lists by repetition. No primary evidence of production.' },
 ];
 
-export const steps = [
-  { n: '01', t: 'Identity', q: 'Does the company and legal entity exist?', s: 'Registry lookup · legal name vs trading name · registered address · status' },
-  { n: '02', t: 'Role', q: 'Is it a manufacturer, distributor, trader, or unclear?', s: 'Own-name registrations · plant address vs office suite · portfolio coherence · self-description across listings' },
-  { n: '03', t: 'Product', q: 'Is there direct evidence for the exact product or specification?', s: 'Product page vs family page · grade and spec stated · TDS/SDS on own domain' },
-  { n: '04', t: 'Production', q: 'Is there credible evidence of manufacturing capability, location, or process?', s: 'Site address in an industrial zone · process patents with assignment history · shipment records naming the shipper' },
-  { n: '05', t: 'Recency', q: 'Is the evidence current enough to support the claim?', s: 'Source dates · corporate changes since · regulatory status today, not at crawl time' },
-  { n: '06', t: 'Confidence', q: 'What is verified, inferred, contradicted, or unresolved?', s: 'Every record scored · every unresolved record reported as unresolved, never guessed' },
+export const classes = [
+  { t: 'Manufacturer', d: 'Owns the process and the plant. Holds registrations in its own legal name. Publishes its own safety and technical documents.',
+    s: ['Own-name regulatory registration', 'Plant address in an industrial zone', 'Process patents, with assignment history', 'Self-hosted SDS / TDS', 'Coherent product family'] },
+  { t: 'Distributor', d: 'Represents named producers under agreement. Adds stock, service and reach. A legitimate channel — and a margin.',
+    s: ['Names the principal it represents', 'Warehousing, no production', 'Producer\'s documents re-issued', 'Regional or application scope', 'Often the only route for small volumes'] },
+  { t: 'Trader', d: 'Buys and resells without a fixed source. Often presents as a manufacturer. Hard to tell apart from one — from the website alone.',
+    s: ['Office-suite address, no plant', 'Vast, unrelated catalogue', 'Documents gated behind a form', 'Claims every role at once', 'Marketplace presence only'] },
 ];
 
-export const products = [
-  { n: '01', t: 'Verified Evidence Register', d: 'Every record normalized, classified, sourced, confidence-scored, risk-flagged, and assigned a recommended action.' },
-  { n: '02', t: 'Executive Decision Brief', d: 'Dataset health, recurring failure patterns, structural gaps, review priorities, and recommended remediation.' },
-  { n: '03', t: 'Exception Queue', d: 'Unsupported, contradicted, duplicated, and unresolved records separated for human review.' },
+export const stages = [
+  { n: '01', t: 'Product brief', q: 'You tell us what you buy.', d: 'Product name, CAS number, application, grade or form, the properties that matter, the volume and where it lands. Attach the SDS or TDS you have.' },
+  { n: '02', t: 'Global trade flows', q: 'Where is it actually produced and shipped from?', d: 'Trade records for the product\'s customs classification, read by exporting country and direction. The producing geographies show up before any company name does.' },
+  { n: '03', t: 'Producers by country', q: 'Who, within those countries, is a candidate?', d: 'Registries, shipment records, regulatory filings and formulator databases surface the candidate companies in each exporting country.' },
+  { n: '04', t: 'Classification', q: 'Manufacturer, distributor, or trader?', d: 'Every candidate is classified on evidence a trading company cannot fake — registrations in its own name, a plant address that matches its documents, patents, shipment records naming it as shipper. Nothing is dropped; everything is labelled.' },
+  { n: '05', t: 'Verified Source Map', q: 'The landscape, resolved.', d: 'A classified map of real sources for your product, with the evidence behind each call and a clear recommendation on who to approach first.' },
 ];
 
-export const pilot = {
-  provide: ['The supplier dataset', 'Product or category context', 'Required geography', 'Your acceptance criteria'],
-  deliver: ['Verified Evidence Register', 'Executive Decision Brief', 'Exception Queue', 'Record-level evidence with sources', 'Classification and confidence scoring', 'One clarification round'],
-  exclude: ['No supplier outreach', 'No commercial negotiation', 'No confidential or paid-database claims unless you provide authorised access', 'No guarantee that every record can be verified', 'Unresolved records are reported explicitly, never guessed'],
-};
+export const outputs = [
+  { n: '01', t: 'Verified Source Map', d: 'Every identified source classified as manufacturer, distributor or trader, with country, product and grade match, the evidence behind the call and a confidence score.' },
+  { n: '02', t: 'Trade Flow Summary', d: 'Where your product is produced and exported from, by country and direction, so the map is read against how the market actually moves.' },
+  { n: '03', t: 'Sourcing Recommendation', d: 'Who to approach first, who to keep as a channel, and the specific questions to put to each — so the next conversation is a short one.' },
+];
 
 export const fit = {
-  yes: ['You generate supplier records using AI or automated research', 'Customers rely on the credibility of your data', 'Your internal team cannot manually inspect every record', 'False positives damage product trust', 'You need an expert-reviewed ground-truth sample', 'You want to measure model or pipeline quality before scaling'],
-  no: ['You need bulk lead generation', 'You want unverifiable contact lists', 'You expect fabricated certainty', 'You need someone to impersonate your team', 'You require confidential competitor or employer data', 'You are looking for mass email outreach'],
+  yes: ['You buy chemicals or raw materials and want to know who actually makes them', 'Your current list mixes producers and resellers and you cannot tell which is which', 'You are qualifying a second source or entering a new geography', 'You need the evidence, not a directory printout', 'You want a precise landscape before you spend time on outreach'],
+  no: ['You need someone to run the negotiation or place the order', 'You want a bulk contact list', 'You expect certainty where the public evidence does not support it', 'You need confidential or paid-database claims without authorised access'],
 };
 
 export const method = [
-  { t: 'Scope', d: 'Agree the sample, the definitions and what "useful" means to you.' },
-  { t: 'Normalize', d: 'Resolve names, entities and duplicates before judging anything.' },
-  { t: 'Verify', d: 'Each record against public evidence. Every call gets a source.' },
-  { t: 'Challenge', d: 'Try to break each verified call with a contradicting source.' },
-  { t: 'Second-pass QA', d: 'Re-read the exception queue cold, a day later.' },
-  { t: 'Deliver', d: 'Register, brief, exception queue, and one round of clarification.' },
+  { t: 'Brief', d: 'Product, CAS, grade, application, volume, destination.' },
+  { t: 'Trade flows', d: 'Exporting countries and direction from trade records.' },
+  { t: 'Producers', d: 'Candidate companies in each producing country.' },
+  { t: 'Classification', d: 'Manufacturer, distributor or trader — on evidence.' },
+  { t: 'Evidence check', d: 'Each call challenged against a contradicting source.' },
+  { t: 'Source Map', d: 'Classified landscape and recommendation.' },
 ];

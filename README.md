@@ -1,6 +1,6 @@
 # Selqentra — one-page site
 
-Supplier Ground Truth Audit. Vite + React + TypeScript. Motion lives inside individual modules: a Three.js records→matrix module in the hero (custom GLSL points), an SVG evidence diagram scrubbed by GSAP ScrollTrigger beside the six verification steps, CSS-driven comparison cards and product previews. Lenis for smooth scroll.
+Supplier landscape intelligence for chemicals: who actually makes a product, classified as manufacturer, distributor or trader on evidence. Vite + React + TypeScript. The centrepiece is a five-stage scroll-driven walkthrough (product brief → global trade flows → producers by country → classification → Verified Source Map) built in SVG and driven by GSAP ScrollTrigger, with three switchable sample briefs. Lenis for smooth scroll. No WebGL.
 
 ## Run
 ```
@@ -18,30 +18,28 @@ Copy `.env.example` to `.env.local`, or set these in the host's environment pane
 | Variable | Purpose | Behaviour |
 |---|---|---|
 | `VITE_CONTACT_EMAIL` | **Required.** A personal address, never an employer address. | `npm run build` refuses to produce a production build without a valid address, so the site can never ship with a call to action that leads nowhere. |
-| `VITE_PILOT_LINK` | Optional payment or booking link (Razorpay page, Wise request, Cal.com). | Not yet surfaced in the UI — reserved for a "pay now" step after scope is confirmed. |
-| `VITE_SAMPLE_URL` | Optional hosted sample audit file. | "Inspect a sample audit" scrolls to the on-page sample until set. |
+| `VITE_BOOKING_URL` | Optional scheduling link (Cal.com, Calendly). | "Book a free pilot" opens it when set; otherwise it opens the on-page product brief, which composes an email. |
 
 `npm run build:preview` builds without the address for local layout checks only; it must not be deployed.
 
 ## How the primary call to action works
-Every "Start a pilot" button scrolls to the on-page intake. Six answers become a structured scoping brief which opens in the visitor's own mail client, addressed and filled in — nothing is stored or transmitted by the site itself. If the mail client does not open, the composed brief is shown with a copy button and the address. A "what happens next" list beside the form removes the second dead end: what happens after you send.
+"Book a free pilot" opens the scheduling link when one is configured; otherwise it scrolls to the product brief. The brief (product, CAS, application, grade/form, properties, volume, delivery location, current source type) becomes an email in the visitor's own mail client, addressed and filled in — nothing is stored or transmitted by the site itself; the visitor attaches SDS/TDS there. If the mail client does not open, the composed brief is shown with a copy button and the address. A "what happens next" list beside the form removes the second dead end: what happens after you send.
 
 Without JavaScript the page still shows the offer and a direct mailto (the address is injected at build time into `index.html`). If WebGL is unavailable, fails to initialise, or the GPU context is lost, the panel falls back to a static SVG of the resolved matrix.
 
 ## Architecture
-- `src/scene/HeroMatrix.tsx` — the only WebGL on the page: thirty records scatter → settle into a 6×5 verified matrix, once, when the module enters view. Falls back to `Fallback.tsx` (static SVG) on WebGL failure, context loss, or reduced motion.
-- `src/sections/EvidenceDiagram.tsx` — an SVG diagram with six states (identities merge, unsupported drop away, manufacturer vs trader lanes, evidence links resolve, one source goes stale, confidence rings fill), scrubbed by ScrollTrigger against the steps column. Reduced motion shows the resolved state.
-- `src/sections/` — nine DOM sections with varied compositions: centred hero, full-width statement, comparison cards, evidence diagram + steps, sample-audit module, product cards, commercial card, fit, method, intake.
-- `src/content/` — all copy and the fictional sample dataset as structured data.
+- `src/sections/Walkthrough.tsx` — the walkthrough. One SVG (graticule map with country nodes, arcs to the delivery location, producer nodes, classification lanes) plus DOM overlays (brief card, stage card, result card). A single GSAP timeline is scrubbed by ScrollTrigger across a tall container; the module itself is `position: sticky`. Switching the sample brief rebuilds the timeline. Reduced motion shows the resolved state.
+- `src/content/briefs.ts` — the three sample briefs. Products are real chemical classes; buyers, volumes, export shares and producer counts are illustrative and labelled so on the page. No real company is named.
+- `src/sections/` — centred hero, walkthrough, statement + three role cards + eight "why lists mislead" cards, sample landscape table (fictional), three output cards, free-pilot card, fit, method, brief + what-happens-next.
+- `src/content/copy.ts`, `src/content/sample.ts` — all copy and the fictional sample as structured data.
 
 ## Colour system
-Black `#070706` · Charcoal `#151311` · Porcelain `#F3F0E9` · Grey `#9C968E` · Orange `#FF5900` · Ember `#351309`. Orange is the single signal colour: verified states, key lines, selected rows, important data points and the primary action. Unsupported states are grey and struck through; "needs review" is an orange outline. No blue, violet or cyan anywhere.
+Black `#070706` · Charcoal `#151311` · Porcelain `#F3F0E9` · Grey `#9C968E` · Orange `#FF5900` · Ember `#351309`. Orange is the single signal colour: manufacturers, verified states, key lines, selected rows and the primary action. Distributors are porcelain, traders grey. Ember tints give the walkthrough and the manufacturer card depth. No blue, violet or cyan anywhere.
 
 ## Performance decisions
-- DPR capped at 1.5 desktop, 1.0 mobile. Thirty points, no post-processing, `low-power` GPU preference. Camera distance adapts to the module's aspect so all six columns fit on a phone.
-- Scene is lazy-loaded after idle; the fallback SVG ships in the initial bundle so first paint never waits on Three.
+- No WebGL. One SVG and a handful of DOM overlays; GSAP tweens attributes and opacity only.
 - Rendering pauses on `visibilitychange` and when the canvas leaves the viewport. No depth of field. Fonts self-hosted and preloaded; no layout shift from type.
-- The hero module renders only while it is on screen and the tab is visible.
+- Parallax on the walkthrough layers responds to fine pointers only.
 
 ## Accessibility
 Semantic sections with labelled headings; visible ultraviolet focus ring; the sample table is keyboard-operable (↑↓ rows, Enter opens the evidence trail, filters are real toggle buttons with `aria-pressed`); status is conveyed by text tags as well as colour; the canvas is `aria-hidden` behind a labelled `aside`; reduced motion removes all animation.

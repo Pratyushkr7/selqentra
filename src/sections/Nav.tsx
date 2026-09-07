@@ -1,4 +1,4 @@
-import { links, config } from '../config';
+import { links } from '../config';
 export function Nav() {
   return (
     <nav className="nav" aria-label="Primary">
@@ -8,10 +8,10 @@ export function Nav() {
           SELQENTRA
         </a>
         <div className="links">
-          <a href="#sample">Sample audit</a>
-          <a href="#pilot">Pilot</a>
+          <a href="#sample">Sample landscape</a>
+          <a href="#receive">Outputs</a>
           <a href="#method">Method</a>
-          <a className="btn primary sm" href={links.start()}>Start a {config.pilot.price} pilot</a>
+          <a className="btn primary sm" href={links.demo()}>Book a free pilot</a>
         </div>
       </div>
     </nav>

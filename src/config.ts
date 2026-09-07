@@ -10,21 +10,18 @@ const env = import.meta.env as Record<string, string | undefined>;
 export const config = {
   brand: 'Selqentra',
   contactEmail: (env.VITE_CONTACT_EMAIL ?? '').trim(),
-  /** Optional: a payment or booking link shown after the brief is sent (Razorpay page, Wise request, Cal.com). */
-  pilotLink: (env.VITE_PILOT_LINK ?? '').trim(),
-  /** Optional: public URL of a downloadable sample audit. The on-page sample is always available. */
-  sampleUrl: (env.VITE_SAMPLE_URL ?? '').trim(),
-  pilot: { price: '$299', records: 30, hours: 72 },
+  /** Optional: a scheduling link (Cal.com, Calendly, Google appointment page). "Book a demo" opens it when set. */
+  bookingUrl: (env.VITE_BOOKING_URL ?? '').trim(),
 };
 
 export const isConfigured = () => Boolean(config.contactEmail);
-
 const enc = (s: string) => encodeURIComponent(s);
 
 export const links = {
-  /** Primary CTA: the on-page intake, which composes a structured brief and hands it to the visitor's mail client. */
-  start: () => '#start',
-  scope: () => (config.contactEmail ? `mailto:${config.contactEmail}?subject=${enc('Selqentra — scope question')}` : '#start'),
-  sample: () => config.sampleUrl || '#sample',
+  /** Primary action. A scheduling link when configured; otherwise the on-page brief, which opens a prefilled email. */
+  demo: () => config.bookingUrl || '#brief',
+  brief: () => '#brief',
+  sample: () => '#sample',
+  question: () => (config.contactEmail ? `mailto:${config.contactEmail}?subject=${enc('Selqentra — a question')}` : '#brief'),
   mailto: (subject: string, body: string) => `mailto:${config.contactEmail}?subject=${enc(subject)}&body=${enc(body)}`,
 };
