@@ -33,7 +33,7 @@ export const outputs = [
 ];
 
 export const fit = {
-  yes: ['You buy a raw material and suspect you are paying a reseller\'s margin', 'You need a qualified second source before a shortage or a price rise forces one', 'Your current list mixes producers and resellers and you cannot tell which is which', 'You make or distribute a material and want to know which manufacturers use it, and who supplies them today', 'You are entering a new geography, as a buyer or a seller', 'You need the evidence, not a directory printout'],
+  yes: ['You buy a raw material and suspect you are paying a reseller\'s margin', 'You need a qualified second source before a shortage or a price rise forces one', 'Your current list mixes producers and resellers and you cannot tell which is which', 'You are launching a product that needs a material your current suppliers cannot provide', 'You are entering a new geography or shortening lead times', 'You need the evidence, not a directory printout'],
   no: ['You need someone to run the negotiation or place the order', 'You want a bulk email list to blast', 'You expect certainty where the public evidence does not support it', 'You need confidential or paid-database claims without authorised access'],
 };
 
@@ -46,18 +46,23 @@ export const method = [
   { t: 'Source Map', d: 'Classified landscape and recommendation.' },
 ];
 
-export const sides = [
-  { t: 'For buyers', h: 'Pay less, and stop depending on one source.',
-    d: 'We trace who actually produces the material you buy, which companies only resell it, and the evidence for each. You negotiate with the producer, or keep your current supplier honest with a real alternative.',
-    s: ['Savings from buying closer to the plant', 'Second sources qualified against your spec', 'Supply risk mapped before a shortage finds you', 'A price you can defend, when yours is already fair'],
-    cta: 'Book a free buyer pilot' },
-  { t: 'For suppliers', h: 'Find the buyers who should already be yours.',
-    d: 'We map the manufacturers that use your material in the markets you want to win, what they buy today and from whom, and the people who decide. Your sales team starts with qualified demand, not a cold list.',
-    s: ['Manufacturers that use your material, by country and industry', 'Who supplies them today, from shipment records', 'Where a reseller sits between you and the buyer', 'The contact route to the people who decide'],
-    cta: 'Book a free supplier pilot' },
+export const why = [
+  { t: 'Supply risk', d: 'Dual sourcing, shorter lead times and more than one producing region all start with knowing who else can make it.' },
+  { t: 'Price', d: 'Long relationships quietly erode your sense of the market price. One credible new producer brings the leverage back.' },
+  { t: 'New products', d: 'A launch or reformulation often needs a material, grade or certification your current supply base does not have.' },
+  { t: 'R&D', d: 'Testing a real alternative is how teams lower cost or improve a product without waiting for a supply problem to force it.' },
 ];
 
 export const record = {
   stats: [['280+', 'sourcing research projects since mid-2025'], ['190+', 'supplier lists built and verified'], ['160+', 'chemicals researched by CAS number, plus 50 blends'], ['98%', 'delivered on or before the agreed date']] as [string, string][],
   note: 'Work done for manufacturers in personal care, coatings and inks, paper, composites, pharma, food and fragrance.',
 };
+
+export const steps = [
+  { n: '01', t: 'Identity', q: 'Does the company and legal entity exist?', s: 'Registry lookup · legal name vs trading name · registered address · status' },
+  { n: '02', t: 'Role', q: 'Is it a manufacturer, distributor, trader, or unclear?', s: 'Own-name registrations · plant address vs office suite · portfolio coherence · self-description across listings' },
+  { n: '03', t: 'Product', q: 'Is there direct evidence for the exact product or specification?', s: 'Product page vs family page · grade and spec stated · TDS/SDS on own domain' },
+  { n: '04', t: 'Production', q: 'Is there credible evidence of manufacturing capability, location, or process?', s: 'Site address in an industrial zone · process patents with assignment history · shipment records naming the shipper' },
+  { n: '05', t: 'Recency', q: 'Is the evidence current enough to support the claim?', s: 'Source dates · corporate changes since · regulatory status today, not at crawl time' },
+  { n: '06', t: 'Confidence', q: 'What is verified, inferred, contradicted, or unresolved?', s: 'Every company scored · anything unresolved reported as unresolved, never guessed' },
+];

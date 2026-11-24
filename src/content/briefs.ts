@@ -1,5 +1,5 @@
 /**
- * Three sample product briefs for the walkthrough. Products are real chemical classes; the buyer,
+ * One sample product brief for the walkthrough. The product is real; the buyer,
  * volumes, exporter shares and producer counts are ILLUSTRATIVE and labelled as such on the page.
  * No real company is named or implied.
  */
@@ -20,30 +20,16 @@ export const COUNTRIES: Record<string, { name: string; lat: number; lon: number 
   MX: { name: 'Mexico', lat: 23, lon: -102 }, GB: { name: 'United Kingdom', lat: 54, lon: -2 }, ES: { name: 'Spain', lat: 40, lon: -4 },
   FR: { name: 'France', lat: 46, lon: 2 }, TH: { name: 'Thailand', lat: 15, lon: 101 }, ID: { name: 'Indonesia', lat: -5, lon: 120 },
   SA: { name: 'Saudi Arabia', lat: 24, lon: 45 }, ZA: { name: 'South Africa', lat: -29, lon: 25 }, AU: { name: 'Australia', lat: -25, lon: 134 },
-  CA: { name: 'Canada', lat: 56, lon: -106 }, PL: { name: 'Poland', lat: 52, lon: 20 }, EG: { name: 'Egypt', lat: 27, lon: 30 }, VN: { name: 'Vietnam', lat: 16, lon: 108 },
+  CA: { name: 'Canada', lat: 56, lon: -106 }, PE: { name: 'Peru', lat: -9, lon: -75 }, KE: { name: 'Kenya', lat: 0, lon: 38 }, CL: { name: 'Chile', lat: -33, lon: -71 }, NZ: { name: 'New Zealand', lat: -41, lon: 174 }, DO: { name: 'Dominican Rep.', lat: 19, lon: -70 }, PL: { name: 'Poland', lat: 52, lon: 20 }, EG: { name: 'Egypt', lat: 27, lon: 30 }, VN: { name: 'Vietnam', lat: 16, lon: 108 },
 };
 
 export const briefs: Brief[] = [
   {
-    id: 'gluconate', label: 'Sodium gluconate',
-    fields: [['Product', 'Sodium gluconate'], ['CAS', '527-07-1'], ['Application', 'Concrete admixture · set retarder'], ['Grade / form', 'Technical, 98% min., powder'], ['Properties', 'Low chloride, free-flowing'], ['Volume', '120 t / year'], ['Delivery', 'Rotterdam, Netherlands']],
-    destination: 'NL',
-    exporters: [{ cc: 'CN', share: 0.62 }, { cc: 'IN', share: 0.12 }, { cc: 'IT', share: 0.09 }, { cc: 'US', share: 0.07 }, { cc: 'DE', share: 0.05 }, { cc: 'FR', share: 0.03 }],
-    producers: [{ cc: 'CN', classes: ['M', 'M', 'M', 'T', 'T', 'T', 'M', 'T', 'D'] }, { cc: 'IN', classes: ['M', 'M', 'T', 'D'] }, { cc: 'IT', classes: ['M', 'D'] }],
-  },
-  {
-    id: 'zpt', label: 'Zinc pyrithione',
-    fields: [['Product', 'Zinc pyrithione, 48% dispersion'], ['CAS', '13463-41-7'], ['Application', 'Anti-dandruff shampoo'], ['Grade / form', 'Cosmetic grade, fine particle size'], ['Properties', 'D50 ≤ 10 µm, pH 6.5–8.5'], ['Volume', '24 t / year'], ['Delivery', 'Mumbai, India']],
-    destination: 'IN',
-    exporters: [{ cc: 'CN', share: 0.48 }, { cc: 'US', share: 0.18 }, { cc: 'IN', share: 0.14 }, { cc: 'BE', share: 0.1 }, { cc: 'JP', share: 0.06 }, { cc: 'DE', share: 0.04 }],
-    producers: [{ cc: 'CN', classes: ['M', 'T', 'T', 'M', 'T', 'D', 'T'] }, { cc: 'US', classes: ['M', 'D', 'D'] }, { cc: 'IN', classes: ['M', 'M', 'T'] }],
-  },
-  {
-    id: 'hpmc', label: 'HPMC',
-    fields: [['Product', 'Hydroxypropyl methylcellulose'], ['CAS', '9004-65-3'], ['Application', 'Tile adhesive · water retention'], ['Grade / form', 'Construction grade, 100,000 mPa·s'], ['Properties', 'Modified, delayed dissolution'], ['Volume', '400 t / year'], ['Delivery', 'Jebel Ali, UAE']],
-    destination: 'AE',
-    exporters: [{ cc: 'CN', share: 0.55 }, { cc: 'US', share: 0.12 }, { cc: 'DE', share: 0.1 }, { cc: 'JP', share: 0.08 }, { cc: 'KR', share: 0.07 }, { cc: 'IN', share: 0.05 }],
-    producers: [{ cc: 'CN', classes: ['M', 'M', 'T', 'T', 'T', 'T', 'M', 'D', 'T', 'M'] }, { cc: 'US', classes: ['M', 'D'] }, { cc: 'DE', classes: ['M', 'D', 'D'] }],
+    id: 'avocado', label: 'Avocado oil, refined',
+    fields: [['Product', 'Avocado oil, refined'], ['CAS', '8024-32-6'], ['Application', 'Food manufacturing'], ['Grade / form', 'Conventional (non-Codex), bulk'], ['Properties', 'Low FFA, neutral taste, purity tested'], ['Volume', 'Illustrative: 80 t / year'], ['Delivery', 'United States']],
+    destination: 'US',
+    exporters: [{ cc: 'MX', share: 0.46 }, { cc: 'PE', share: 0.2 }, { cc: 'KE', share: 0.1 }, { cc: 'ES', share: 0.08 }, { cc: 'CL', share: 0.06 }, { cc: 'NZ', share: 0.04 }],
+    producers: [{ cc: 'MX', classes: ['M', 'M', 'M', 'T', 'T', 'D', 'M', 'T'] }, { cc: 'PE', classes: ['M', 'M', 'T', 'D'] }, { cc: 'KE', classes: ['M', 'M', 'T'] }],
   },
 ];
 
