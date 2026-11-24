@@ -1,9 +1,8 @@
 import { useMemo, useState, type FormEvent } from 'react';
 import { config, links, isConfigured } from '../config';
 
-const GOALS = ['Find producers or cut cost (I buy this)', 'Find buyers (I sell this)'];
-interface Form { email: string; company: string; product: string; cas: string; application: string; grade: string; properties: string; volume: string; destination: string; current: string; goal: string; notes: string }
-const empty: Form = { email: '', company: '', product: '', cas: '', application: '', grade: '', properties: '', volume: '', destination: '', current: 'Not sure', goal: GOALS[0], notes: '' };
+interface Form { email: string; company: string; product: string; cas: string; application: string; grade: string; properties: string; volume: string; destination: string; current: string; notes: string }
+const empty: Form = { email: '', company: '', product: '', cas: '', application: '', grade: '', properties: '', volume: '', destination: '', current: 'Not sure', notes: '' };
 const CURRENT = ['Not sure', 'A manufacturer', 'A distributor', 'A trader', 'Several of these'];
 
 export function Intake() {
@@ -18,7 +17,6 @@ export function Intake() {
 
   const brief = useMemo(() => [
     'PRODUCT BRIEF: free pilot',
-    `Goal: ${f.goal}`,
     '',
     `Company: ${f.company || '—'}`,
     `Contact: ${f.email || '—'}`,
@@ -59,7 +57,6 @@ export function Intake() {
             <label>Annual volume<input type="text" placeholder="e.g. 120 t" value={f.volume} onChange={set('volume')} /></label>
             <label>Delivery location<input type="text" required placeholder="City, country" value={f.destination} onChange={set('destination')} aria-invalid={touched && !f.destination.trim()} /></label>
             <label>Key properties or spec<input type="text" placeholder="The two or three that matter" value={f.properties} onChange={set('properties')} /></label>
-            <label>I want to<select value={f.goal} onChange={set('goal')}>{GOALS.map((c) => <option key={c}>{c}</option>)}</select></label>
             <label>Your current source is<select value={f.current} onChange={set('current')}>{CURRENT.map((c) => <option key={c}>{c}</option>)}</select></label>
           </div>
           <label>Anything else <span className="opt">optional</span><textarea rows={2} placeholder="Geographies to include or avoid, certifications required, what would make this useful" value={f.notes} onChange={set('notes')} /></label>

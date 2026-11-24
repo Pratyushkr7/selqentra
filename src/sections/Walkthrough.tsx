@@ -50,7 +50,7 @@ export function Walkthrough({ active }: { active: boolean }) {
 
     // ---- 01 brief
     setStageAt(0, 0);
-    tl.fromTo(qd('.bf b'), { color: '#9C968E' }, { color: '#F3F0E9', duration: 0.3, stagger: 0.07 }, 0.05);
+    tl.fromTo(qd('.bf b'), { color: '#8A9198' }, { color: '#F2F3EF', duration: 0.3, stagger: 0.07 }, 0.05);
     tl.to(q('.grat'), { opacity: 0.35, duration: 0.8 }, 0.2);
     tl.to(q('.dest'), { opacity: 1, duration: 0.4 }, 0.6);
     // ---- 02 trade flows
@@ -74,7 +74,7 @@ export function Walkthrough({ active }: { active: boolean }) {
     setStageAt(3, 3);
     tl.to(q('.grat, .country, .cnt, .arc, .dest'), { opacity: 0, duration: 0.5 }, 3);
     tl.to(q('.lane'), { opacity: 1, duration: 0.5 }, 3.1);
-    nodes.forEach((n, i) => tl.to(q(`#n-${n.id}`), { attr: { cx: n.lx, cy: n.ly, r: 5.2 }, fill: n.c === 'M' ? '#FF5900' : n.c === 'D' ? '#F3F0E9' : '#9C968E', duration: 0.8 }, 3.15 + i * 0.03));
+    nodes.forEach((n, i) => tl.to(q(`#n-${n.id}`), { attr: { cx: n.lx, cy: n.ly, r: 5.2 }, fill: n.c === 'M' ? '#F25A0C' : n.c === 'D' ? '#F2F3EF' : '#8A9198', duration: 0.8 }, 3.15 + i * 0.03));
     ORDER.forEach((c, i) => tl.fromTo(q(`.chip-${c}`), { opacity: 0, x: -6 }, { opacity: 1, x: 0, duration: 0.35, stagger: 0.08 }, 3.6 + i * 0.12));
     // ---- 05 source map
     setStageAt(4, 4);
@@ -108,56 +108,58 @@ export function Walkthrough({ active }: { active: boolean }) {
         <div className="module deep" aria-label="Walkthrough: from product brief to verified source map">
           <div className="mh">
             <span>Walkthrough · <b>{stages[stage].n} {stages[stage].t}</b></span>
-            <div className="briefs" role="tablist" aria-label="Sample product briefs">
-              {briefs.map((b) => <button key={b.id} role="tab" aria-selected={briefId === b.id} className="chipbtn" onClick={() => setBriefId(b.id)}>{b.label}</button>)}
-            </div>
+            {briefs.length > 1 ? (
+              <div className="briefs" role="tablist" aria-label="Sample product briefs">
+                {briefs.map((b) => <button key={b.id} role="tab" aria-selected={briefId === b.id} className="chipbtn" onClick={() => setBriefId(b.id)}>{b.label}</button>)}
+              </div>
+            ) : <span>{briefs[0].label}</span>}
           </div>
           <div className="stagewrap">
             <svg ref={svg} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio={narrow ? 'xMidYMid slice' : 'xMidYMid meet'} aria-hidden="true">
               <defs>
-                <radialGradient id="ember" cx="50%" cy="50%" r="60%"><stop offset="0" stopColor="#351309" stopOpacity=".9" /><stop offset="1" stopColor="#070706" stopOpacity="0" /></radialGradient>
+                <radialGradient id="ember" cx="50%" cy="50%" r="60%"><stop offset="0" stopColor="#3A1F12" stopOpacity=".9" /><stop offset="1" stopColor="#111417" stopOpacity="0" /></radialGradient>
                 <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch" /><feColorMatrix type="saturate" values="0" /><feComponentTransfer><feFuncA type="linear" slope=".06" /></feComponentTransfer></filter>
               </defs>
-              <rect width={W} height={H} fill="#070706" />
+              <rect width={W} height={H} fill="#111417" />
               <ellipse cx={W * 0.62} cy={H * 0.45} rx={W * 0.5} ry={H * 0.55} fill="url(#ember)" />
               <rect width={W} height={H} filter="url(#grain)" opacity=".5" />
               {/* graticule */}
               <g className="grat plx" data-k="0.4" opacity="0.12">
-                {[-150, -120, -90, -60, -30, 0, 30, 60, 90, 120, 150].map((lon) => <line key={lon} x1={px(lon)} x2={px(lon)} y1={30} y2={470} stroke="#9C968E" strokeOpacity=".28" />)}
-                {[60, 30, 0, -30].map((lat) => <line key={lat} x1={40} x2={920} y1={py(lat)} y2={py(lat)} stroke="#9C968E" strokeOpacity=".28" />)}
-                {Object.entries(COUNTRIES).map(([cc, c]) => <g key={cc}><circle cx={px(c.lon)} cy={py(c.lat)} r="1.6" fill="#9C968E" opacity=".6" /><text x={px(c.lon) + 5} y={py(c.lat) - 4} fill="#9C968E" opacity=".45" fontFamily={MONO} fontSize="7.5" letterSpacing="1">{cc}</text></g>)}
+                {[-150, -120, -90, -60, -30, 0, 30, 60, 90, 120, 150].map((lon) => <line key={lon} x1={px(lon)} x2={px(lon)} y1={30} y2={470} stroke="#8A9198" strokeOpacity=".28" />)}
+                {[60, 30, 0, -30].map((lat) => <line key={lat} x1={40} x2={920} y1={py(lat)} y2={py(lat)} stroke="#8A9198" strokeOpacity=".28" />)}
+                {Object.entries(COUNTRIES).map(([cc, c]) => <g key={cc}><circle cx={px(c.lon)} cy={py(c.lat)} r="1.6" fill="#8A9198" opacity=".6" /><text x={px(c.lon) + 5} y={py(c.lat) - 4} fill="#8A9198" opacity=".45" fontFamily={MONO} fontSize="7.5" letterSpacing="1">{cc}</text></g>)}
               </g>
               {/* arcs */}
               <g className="plx" data-k="0.7">
-                {brief.exporters.map((e) => { const c = COUNTRIES[e.cc]; const x1 = px(c.lon), y1 = py(c.lat); const mx = (x1 + dx) / 2, my = Math.min(y1, dy) - Math.abs(x1 - dx) * 0.22 - 20; return <path key={e.cc} id={`a-${e.cc}`} className="arc" d={`M ${x1} ${y1} Q ${mx} ${my} ${dx} ${dy}`} fill="none" stroke="#FF5900" strokeWidth="1.1" strokeDasharray="1200" strokeDashoffset="1200" opacity="0" />; })}
+                {brief.exporters.map((e) => { const c = COUNTRIES[e.cc]; const x1 = px(c.lon), y1 = py(c.lat); const mx = (x1 + dx) / 2, my = Math.min(y1, dy) - Math.abs(x1 - dx) * 0.22 - 20; return <path key={e.cc} id={`a-${e.cc}`} className="arc" d={`M ${x1} ${y1} Q ${mx} ${my} ${dx} ${dy}`} fill="none" stroke="#F25A0C" strokeWidth="1.1" strokeDasharray="1200" strokeDashoffset="1200" opacity="0" />; })}
               </g>
               {/* countries */}
               <g className="plx" data-k="1">
                 {brief.exporters.map((e) => { const c = COUNTRIES[e.cc]; const minor = !topCC.has(e.cc); return (
                   <g key={e.cc} className={`country ${minor ? 'exp-minor' : ''}`}>
-                    <circle id={`c-${e.cc}`} cx={px(c.lon)} cy={py(c.lat)} r="0" fill="#FF5900" fillOpacity=".16" stroke="#FF5900" strokeWidth="1" opacity="0" />
-                    <text id={`t-${e.cc}`} x={px(c.lon) > 700 ? px(c.lon) - 8 - e.share * 26 : px(c.lon) + 8 + e.share * 26} y={py(c.lat) + 4} textAnchor={px(c.lon) > 700 ? 'end' : 'start'} fill="#F3F0E9" fontFamily={MONO} fontSize="10.5" letterSpacing="1" opacity="0">{c.name.toUpperCase()} <tspan fill="#FF5900">{Math.round(e.share * 100)}%</tspan></text>
+                    <circle id={`c-${e.cc}`} cx={px(c.lon)} cy={py(c.lat)} r="0" fill="#F25A0C" fillOpacity=".16" stroke="#F25A0C" strokeWidth="1" opacity="0" />
+                    <text id={`t-${e.cc}`} x={px(c.lon) > 700 ? px(c.lon) - 8 - e.share * 26 : px(c.lon) + 8 + e.share * 26} y={py(c.lat) + 4} textAnchor={px(c.lon) > 700 ? 'end' : 'start'} fill="#F2F3EF" fontFamily={MONO} fontSize="10.5" letterSpacing="1" opacity="0">{c.name.toUpperCase()} <tspan fill="#F25A0C">{Math.round(e.share * 100)}%</tspan></text>
                   </g>); })}
                 <g className="dest" opacity="0">
-                  <rect x={dx - 6} y={dy - 6} width="12" height="12" fill="#070706" stroke="#F3F0E9" strokeWidth="1.2" transform={`rotate(45 ${dx} ${dy})`} />
-                  <text x={dx + 12} y={dy - 10} fill="#9C968E" fontFamily={MONO} fontSize="9.5" letterSpacing="1.2">DELIVERY · {dest.name.toUpperCase()}</text>
+                  <rect x={dx - 6} y={dy - 6} width="12" height="12" fill="#111417" stroke="#F2F3EF" strokeWidth="1.2" transform={`rotate(45 ${dx} ${dy})`} />
+                  <text x={dx + 12} y={dy - 10} fill="#8A9198" fontFamily={MONO} fontSize="9.5" letterSpacing="1.2">DELIVERY · {dest.name.toUpperCase()}</text>
                 </g>
-                <text id="flowlabel" x="40" y={H - 18} fill="#9C968E" fontFamily={MONO} fontSize="9.5" letterSpacing="1.4" opacity="0">EXPORT SHARE BY COUNTRY · ILLUSTRATIVE FLOWS, NOT LIVE TRADE DATA</text>
-                {brief.producers.map((p) => { const c = COUNTRIES[p.cc]; return <text key={p.cc} id={`cnt-${p.cc}`} className="cnt" x={px(c.lon) - 50} y={py(c.lat) + 56} fill="#9C968E" fontFamily={MONO} fontSize="9.5" letterSpacing="1.2" opacity="0">{p.classes.length} CANDIDATES</text>; })}
+                <text id="flowlabel" x="40" y={H - 18} fill="#8A9198" fontFamily={MONO} fontSize="9.5" letterSpacing="1.4" opacity="0">EXPORT SHARE BY COUNTRY · ILLUSTRATIVE FLOWS, NOT LIVE TRADE DATA</text>
+                {brief.producers.map((p) => { const c = COUNTRIES[p.cc]; return <text key={p.cc} id={`cnt-${p.cc}`} className="cnt" x={px(c.lon) - 50} y={py(c.lat) + 56} fill="#8A9198" fontFamily={MONO} fontSize="9.5" letterSpacing="1.2" opacity="0">{p.classes.length} CANDIDATES</text>; })}
               </g>
               {/* lanes */}
               <g className="lane" opacity="0">
                 {ORDER.map((c) => (
                   <g key={c}>
-                    <line className="lane-line" x1="200" x2="900" y1={LANE_Y[c]} y2={LANE_Y[c]} stroke="#9C968E" strokeOpacity=".25" />
-                    <text x="40" y={LANE_Y[c] + 4} fill={c === 'M' ? '#FF5900' : c === 'D' ? '#F3F0E9' : '#9C968E'} fontFamily={MONO} fontSize="10.5" letterSpacing="1.4">{CLASS_NAME[c].toUpperCase()}</text>
-                    {CHIPS[c].map((ch, k) => <text key={ch} className={`evchip chip-${c}`} x="200" y={LANE_Y[c] - 46 + k * 13} fill="#9C968E" fontFamily={MONO} fontSize="9" letterSpacing="1" opacity="0">· {ch.toUpperCase()}</text>)}
+                    <line className="lane-line" x1="200" x2="900" y1={LANE_Y[c]} y2={LANE_Y[c]} stroke="#8A9198" strokeOpacity=".25" />
+                    <text x="40" y={LANE_Y[c] + 4} fill={c === 'M' ? '#F25A0C' : c === 'D' ? '#F2F3EF' : '#8A9198'} fontFamily={MONO} fontSize="10.5" letterSpacing="1.4">{CLASS_NAME[c].toUpperCase()}</text>
+                    {CHIPS[c].map((ch, k) => <text key={ch} className={`evchip chip-${c}`} x="200" y={LANE_Y[c] - 46 + k * 13} fill="#8A9198" fontFamily={MONO} fontSize="9" letterSpacing="1" opacity="0">· {ch.toUpperCase()}</text>)}
                   </g>
                 ))}
               </g>
               {/* producer nodes */}
               <g className="plx" data-k="1.2">
-                {nodes.map((n) => <circle key={n.id} id={`n-${n.id}`} cx={n.rx} cy={n.ry} r="0" fill="#F3F0E9" opacity="0" />)}
+                {nodes.map((n) => <circle key={n.id} id={`n-${n.id}`} cx={n.rx} cy={n.ry} r="0" fill="#F2F3EF" opacity="0" />)}
               </g>
             </svg>
 
