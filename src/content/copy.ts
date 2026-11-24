@@ -43,14 +43,20 @@ export const method = [
 ];
 
 export const why = [
-  { t: 'Supply risk', d: 'Dual sourcing, shorter lead times and more than one producing region all start with knowing who else can make it.' },
+  { t: 'Supply risk', d: 'Dual sourcing, shorter lead times and a second producing region all start with knowing who else can make it.' },
   { t: 'Price', d: 'Long relationships quietly erode your sense of the market price. One credible new producer brings the leverage back.' },
   { t: 'New products', d: 'A launch or reformulation often needs a material, grade or certification your current supply base does not have.' },
-  { t: 'R&D', d: 'Testing a real alternative is how teams lower cost or improve a product without waiting for a supply problem to force it.' },
+  { t: 'R&D', d: 'Chemistry moves fast. A better-performing or off-patent alternative can lower cost or open a new product.' },
+];
+
+export const hard = [
+  { t: 'The market is bigger than any search', d: 'Hundreds of thousands of suppliers worldwide, and every grade, certification and volume narrows the field differently.' },
+  { t: 'Real producers stay quiet', d: 'Many plants never say online what they make. The loudest listings are often resellers.' },
+  { t: 'Trust takes checking', d: 'Without prior vetting, samples and negotiations with a new name stall. Evidence up front shortens qualification.' },
 ];
 
 export const record = {
-  stats: [['280+', 'sourcing research projects since mid-2025'], ['190+', 'supplier lists built and verified'], ['160+', 'chemicals researched by CAS number, plus 50 blends'], ['98%', 'delivered on or before the agreed date']] as [string, string][],
+  stats: [['280+', 'sourcing research projects since mid-2025'], ['190+', 'supplier lists built and verified'], ['160+', 'chemicals researched by CAS number, plus 50 blends'], ['45+', 'manufacturers and brands served']] as [string, string][],
   note: 'Work done for manufacturers in personal care, coatings and inks, paper, composites, pharma, food and fragrance.',
 };
 
