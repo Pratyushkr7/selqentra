@@ -1,10 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { briefs, COUNTRIES, CHIPS, CLASS_NAME, type Cls } from '../content/briefs';
 import { stages } from '../content/copy';
 
-gsap.registerPlugin(ScrollTrigger);
 
 const W = 960, H = 520;
 const px = (lon: number) => 40 + ((lon + 170) / 330) * 880;
@@ -16,6 +14,8 @@ const MONO = "'Plex Mono', ui-monospace, monospace";
 export function Walkthrough({ active }: { active: boolean }) {
   const [briefId, setBriefId] = useState(briefs[0].id);
   const [stage, setStage] = useState(0);
+  const [done, setDone] = useState(false);
+  const ctl = useRef<{ replay: () => void; seek: (i: number) => void }>({ replay: () => {}, seek: () => {} });
   const [narrow, setNarrow] = useState(() => typeof window !== 'undefined' && window.innerWidth < 900);
   useEffect(() => { const f = () => setNarrow(window.innerWidth < 900); window.addEventListener('resize', f); return () => window.removeEventListener('resize', f); }, []);
   const brief = useMemo(() => briefs.find((b) => b.id === briefId)!, [briefId]);
@@ -45,7 +45,7 @@ export function Walkthrough({ active }: { active: boolean }) {
   useEffect(() => {
     const s = svg.current, d = dom.current; if (!s || !d) return;
     const q = gsap.utils.selector(s), qd = gsap.utils.selector(d);
-    const tl = gsap.timeline({ paused: true, defaults: { ease: 'power2.inOut' }, onUpdate: () => setStage(Math.min(4, Math.floor(tl.time()))) });
+    const tl = gsap.timeline({ paused: true, defaults: { ease: 'power2.inOut' }, onUpdate: () => setStage(Math.min(4, Math.floor(tl.time()))), onComplete: () => setDone(true) });
     const setStageAt = (_i: number, _t: number) => tl;
 
     // ---- 01 brief
@@ -85,9 +85,19 @@ export function Walkthrough({ active }: { active: boolean }) {
     tl.to({}, { duration: 0.5 });
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (!active || reduced || !root.current) { tl.progress(1); setStage(4); return () => { tl.kill(); }; }
-    const st = ScrollTrigger.create({ trigger: root.current, start: 'top top+=70', end: 'bottom bottom', scrub: 0.4, animation: tl });
-    return () => { st.kill(); tl.kill(); };
+    if (!active || reduced || !root.current) { tl.progress(1); setStage(4); setDone(true); return () => { tl.kill(); }; }
+    // Plays on its own once the visitor reaches it (or points at it); paused while off screen.
+    tl.timeScale(0.45);
+    const el = root.current;
+    const go = () => { if (tl.progress() < 1) tl.play(); };
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) go(); else tl.pause(); }, { threshold: 0.45 });
+    io.observe(el);
+    el.addEventListener('pointerenter', go);
+    ctl.current = {
+      replay: () => { setDone(false); tl.restart(); },
+      seek: (i: number) => { setDone(false); tl.time(i + 0.02); tl.play(); },
+    };
+    return () => { io.disconnect(); el.removeEventListener('pointerenter', go); tl.kill(); };
   }, [brief, nodes, active]);
 
   // parallax on pointer (fine pointers only)
@@ -107,7 +117,7 @@ export function Walkthrough({ active }: { active: boolean }) {
       <div className="walk-sticky">
         <div className="module deep" aria-label="Walkthrough: from product brief to verified source map">
           <div className="mh">
-            <span>Walkthrough · <b>{stages[stage].n} {stages[stage].t}</b></span>
+            <span>Walkthrough · <b>{stages[stage].n} {stages[stage].t}</b>{done && <button type="button" className="replay" onClick={() => ctl.current.replay()}>Replay</button>}</span>
             {briefs.length > 1 ? (
               <div className="briefs" role="tablist" aria-label="Sample product briefs">
                 {briefs.map((b) => <button key={b.id} role="tab" aria-selected={briefId === b.id} className="chipbtn" onClick={() => setBriefId(b.id)}>{b.label}</button>)}
@@ -115,7 +125,7 @@ export function Walkthrough({ active }: { active: boolean }) {
             ) : <span>{briefs[0].label}</span>}
           </div>
           <div className="stagewrap">
-            <svg ref={svg} viewBox={`0 0 ${W} ${H}`} preserveAspectRatio={narrow ? 'xMidYMid slice' : 'xMidYMid meet'} aria-hidden="true">
+            <svg ref={svg} viewBox={narrow ? `-100 0 ${W} ${H}` : `0 0 ${W} ${H}`} preserveAspectRatio={narrow ? 'xMidYMid slice' : 'xMidYMid meet'} aria-hidden="true">
               <defs>
                 <radialGradient id="ember" cx="50%" cy="50%" r="60%"><stop offset="0" stopColor="#3A1F12" stopOpacity=".9" /><stop offset="1" stopColor="#111417" stopOpacity="0" /></radialGradient>
                 <filter id="grain"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch" /><feColorMatrix type="saturate" values="0" /><feComponentTransfer><feFuncA type="linear" slope=".06" /></feComponentTransfer></filter>
@@ -186,7 +196,7 @@ export function Walkthrough({ active }: { active: boolean }) {
           </div>
         </div>
         <ol className="stagerail" aria-label="Stages">
-          {stages.map((s, i) => <li key={s.n} className={i === stage ? 'on' : i < stage ? 'done' : ''}><span className="mono">{s.n}</span> {s.t}</li>)}
+          {stages.map((s, i) => <li key={s.n} className={i === stage ? 'on' : i < stage ? 'done' : ''}><button type="button" onClick={() => ctl.current.seek(i)}><span className="mono">{s.n}</span> {s.t}</button></li>)}
         </ol>
       </div>
     </div>

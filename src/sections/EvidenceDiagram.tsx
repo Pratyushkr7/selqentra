@@ -1,8 +1,6 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-gsap.registerPlugin(ScrollTrigger);
 
 /**
  * One contained diagram, six states, scrubbed by the steps beside it.
@@ -70,8 +68,12 @@ export function EvidenceDiagram({ stepsRef, active, onStep }: { stepsRef: React.
 
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (!active || reduced || !stepsRef.current) { tl.progress(1); return () => { tl.kill(); }; }
-    const st = ScrollTrigger.create({ trigger: stepsRef.current, start: 'top 62%', end: 'bottom 62%', scrub: 0.4, animation: tl });
-    return () => { st.kill(); tl.kill(); };
+    // Plays on its own when the diagram is in view; paused while off screen.
+    tl.timeScale(0.55);
+    const el = root.parentElement || root;
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { if (tl.progress() < 1) tl.play(); } else tl.pause(); }, { threshold: 0.5 });
+    io.observe(el);
+    return () => { io.disconnect(); tl.kill(); };
   }, [active, stepsRef, onStep]);
 
   return (

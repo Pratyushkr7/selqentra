@@ -1,11 +1,8 @@
-import { forwardRef, lazy, Suspense } from 'react';
+import { forwardRef } from 'react';
 import { Button } from '../ui/Button';
 import { links, isConfigured } from '../config';
-import { Fallback } from '../scene/Fallback';
 
-const HeroMatrix = lazy(() => import('../scene/HeroMatrix'));
-
-export const Hero = forwardRef<HTMLElement, { live: boolean }>(function Hero({ live }, ref) {
+export const Hero = forwardRef<HTMLElement>(function Hero(_, ref) {
   return (
     <section className="hero" id="top" ref={ref} aria-labelledby="h-hero">
       <div className="wrap center">
@@ -20,14 +17,6 @@ export const Hero = forwardRef<HTMLElement, { live: boolean }>(function Hero({ l
           <Button href={links.sample()} variant="ghost">See a sample</Button>
         </div>
         <p className="proof reveal"><span><b>Savings</b></span><span><b>Second sources</b></span><span><b>Manufacturer / distributor / trader</b></span><span>Plant-level evidence</span></p>
-      </div>
-      <div className="wrap">
-        <div className="module reveal" aria-label="Thirty supplier records resolving into a verified matrix">
-          <div className="mh"><span>Supplier records → verified matrix</span><b>30 records</b></div>
-          <div className="matrix">
-            {live ? <Suspense fallback={<Fallback />}><HeroMatrix /></Suspense> : <Fallback />}
-          </div>
-        </div>
       </div>
     </section>
   );
