@@ -3,353 +3,431 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark">
-<meta name="theme-color" content="#070706">
-<title>Selqentra: buy closer to the source, pay less for your raw materials</title>
-<meta name="description" content="Find out who actually makes the raw materials you buy and who sits in between. Negotiate with the source, keep your supplier honest and cut supply risk. In 72 hours, paid after delivery.">
-<meta property="og:title" content="Selqentra: buy closer to the source">
-<meta property="og:description" content="Find out who actually makes what you buy, so you can pay less for the same material. In 72 hours, paid after delivery.">
+<meta name="theme-color" content="#111417">
+<title>Selqentra | Find the margin in your raw material prices</title>
+<meta name="description" content="Selqentra traces who actually makes the raw materials you buy and who sits in between, so you can negotiate with the source, keep your supplier honest and cut supply risk. Reports in 72 hours, paid after delivery.">
+<meta property="og:title" content="Selqentra | Find the margin in your raw material prices">
+<meta property="og:description" content="Who actually makes what you buy, who sits in between, and the proof. Reports in 72 hours, paid after delivery.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="/og.png">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23070706'/%3E%3Cg fill='%23F3F0E9'%3E%3Crect x='1' y='1' width='4' height='4'/%3E%3Crect x='6' y='1' width='4' height='4'/%3E%3Crect x='11' y='1' width='4' height='4'/%3E%3Crect x='1' y='6' width='4' height='4'/%3E%3Crect x='11' y='6' width='4' height='4'/%3E%3Crect x='1' y='11' width='4' height='4'/%3E%3Crect x='6' y='11' width='4' height='4'/%3E%3Crect x='11' y='11' width='4' height='4'/%3E%3C/g%3E%3Crect x='6' y='6' width='4' height='4' fill='%23FF5900'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='2' fill='%23111417'/%3E%3Cg fill='%23F2F3EF'%3E%3Crect x='3' y='3' width='2.6' height='2.6'/%3E%3Crect x='6.7' y='3' width='2.6' height='2.6'/%3E%3Crect x='10.4' y='3' width='2.6' height='2.6'/%3E%3Crect x='3' y='6.7' width='2.6' height='2.6'/%3E%3Crect x='10.4' y='6.7' width='2.6' height='2.6'/%3E%3Crect x='3' y='10.4' width='2.6' height='2.6'/%3E%3Crect x='6.7' y='10.4' width='2.6' height='2.6'/%3E%3Crect x='10.4' y='10.4' width='2.6' height='2.6'/%3E%3C/g%3E%3Crect x='6.7' y='6.7' width='2.6' height='2.6' fill='%23F25A0C'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Condensed:wght@500;600&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
   :root{
-    --black:#070706; --charcoal:#151311; --charcoal-2:#1D1A17;
-    --porcelain:#F3F0E9; --porcelain-2:#CFCAC1; --grey:#9C968E;
-    --orange:#FF5900; --orange-hi:#FF6D1F; --ember:#351309;
-    --rule:rgba(156,150,142,.22); --rule-2:rgba(156,150,142,.12);
-    --paper:#FBFAF7; --ink:#14120F; --ink-2:#5E5952; --paper-rule:#E3DED5;
-    --sans:"Geist",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-    --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+    --ink:#111417; --ink-2:#1C2126; --steel:#2A3036;
+    --page:#F2F3EF; --paper:#FFFFFF; --slate:#59616A; --mute:#8A9198;
+    --rule:#D6D9D3; --rule-dark:rgba(242,243,239,.14);
+    --signal:#F25A0C; --signal-ink:#B83F00; --signal-soft:#FCE6DA;
+    --mfr:#1F5F52; --mfr-soft:#DDEBE6; --dst:#7A5A12; --dst-soft:#F3EAD4;
+    --head:"IBM Plex Sans Condensed","IBM Plex Sans",ui-sans-serif,system-ui,sans-serif;
+    --body:"IBM Plex Sans",ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   }
   *{box-sizing:border-box}
-  html{background:var(--black);scroll-behavior:smooth}
-  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
-  body{margin:0;background:var(--black);color:var(--porcelain);font-family:var(--sans);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
-  h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.03em;line-height:1.04;text-wrap:balance}
-  p{margin:0;max-width:64ch}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+  body{margin:0;background:var(--page);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,p,ul,ol,figure{margin:0}
   a{color:inherit}
-  :focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:2px}
-  ::selection{background:var(--orange);color:var(--black)}
-  .wrap{max-width:1180px;margin:0 auto;padding:0 clamp(20px,5vw,64px)}
-  .muted{color:var(--porcelain-2)}
+  :focus-visible{outline:2px solid var(--signal);outline-offset:3px;border-radius:2px}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 32px}
+  .num{font-variant-numeric:tabular-nums}
 
-  .nav{position:sticky;top:0;z-index:5;background:linear-gradient(var(--black) 75%,rgba(7,7,6,0))}
-  .nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
-  .brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-weight:600;letter-spacing:.08em;font-size:14px}
-  .mark{width:16px;height:16px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
-  .mark i{display:block;background:var(--porcelain);border-radius:1px;opacity:.9}
-  .mark i:nth-child(5){background:var(--orange);opacity:1}
-  .nav .links{display:flex;align-items:center;gap:26px}
-  .nav .links a.txt{font-size:14px;color:var(--grey);text-decoration:none}
-  .nav .links a.txt:hover{color:var(--porcelain)}
+  /* header */
+  .top{position:sticky;top:0;z-index:20;background:rgba(17,20,23,.96);backdrop-filter:saturate(140%) blur(8px);border-bottom:1px solid var(--rule-dark)}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--page);font-family:var(--head);font-weight:600;font-size:19px;letter-spacing:.01em}
+  .mark{width:18px;height:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:2px}
+  .mark i{background:var(--page);border-radius:1px}
+  .mark i:nth-child(5){background:var(--signal)}
+  .top nav{display:flex;align-items:center;gap:30px}
+  .top nav a{color:#C9CDD1;text-decoration:none;font-size:15px}
+  .top nav a:hover{color:var(--page)}
+  .top nav a.cta{color:var(--ink);background:var(--page);padding:8px 16px;border-radius:4px;font-weight:500}
+  .top nav a.cta:hover{background:#fff}
 
-  .btn{display:inline-flex;align-items:center;justify-content:center;height:48px;padding:0 22px;border-radius:3px;font:inherit;font-weight:500;font-size:15.5px;text-decoration:none;cursor:pointer;border:0;white-space:nowrap;transition:background .15s,border-color .15s}
-  .btn.primary{background:var(--orange);color:var(--black)}
-  .btn.primary:hover{background:var(--orange-hi)}
-  .btn.ghost{background:transparent;color:var(--porcelain);box-shadow:inset 0 0 0 1px var(--rule)}
-  .btn.ghost:hover{box-shadow:inset 0 0 0 1px var(--grey);background:var(--charcoal)}
-  .btn.sm{height:38px;padding:0 15px;font-size:14px}
+  /* buttons */
+  .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 22px;border-radius:4px;font:500 16px/1 var(--body);text-decoration:none;border:1px solid transparent;cursor:pointer}
+  .btn.primary{background:var(--signal);color:#fff}
+  .btn.primary:hover{background:#DD4F05}
+  .btn.line{border-color:rgba(242,243,239,.35);color:var(--page)}
+  .btn.line:hover{border-color:var(--page)}
+  .btn.dark{background:var(--ink);color:var(--page)}
 
-  .hero{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(36px,5vw,72px);align-items:center;padding:clamp(40px,7vh,88px) 0 clamp(64px,10vh,112px)}
-  .hero>*{min-width:0}
-  .hero h1{font-size:clamp(42px,5.6vw,80px)}
-  .hero h1 span{color:var(--grey)}
-  .hero .lede{font-size:clamp(17px,1.35vw,20px);color:var(--porcelain-2);margin:26px 0 32px;max-width:40ch;line-height:1.5}
-  .ctas{display:flex;gap:12px;flex-wrap:wrap}
-  .fine{margin-top:20px;color:var(--grey);font-size:15px;max-width:44ch}
-  .fine b{color:var(--porcelain);font-weight:500}
+  /* hero */
+  .hero{background:var(--ink);color:var(--page);padding:88px 0 96px;border-bottom:1px solid var(--rule-dark)}
+  .hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:72px;align-items:center}
+  .hero h1{font-family:var(--head);font-weight:600;font-size:clamp(40px,5.4vw,66px);line-height:1.02;letter-spacing:-.015em}
+  .hero .lede{margin-top:26px;font-size:19px;line-height:1.55;color:#C9CDD1;max-width:34em}
+  .hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:36px}
+  .hero .terms{margin-top:22px;font-size:14.5px;color:var(--mute)}
+  .hero .terms b{color:#C9CDD1;font-weight:500}
 
-  .sheet{margin:0;background:var(--paper);color:var(--ink);border-radius:4px;padding:22px 22px 16px;position:relative;box-shadow:0 30px 60px -30px rgba(255,89,0,.25),0 0 0 1px rgba(255,255,255,.04)}
-  .sheet-head{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;border-bottom:2px solid var(--ink);padding-bottom:12px}
-  .sheet-head .t{font-weight:600;font-size:19px;letter-spacing:-.015em}
-  .sheet-head .m{font-family:var(--mono);font-size:12px;color:var(--ink-2);margin-top:4px}
-  .sheet-head .id{font-family:var(--mono);font-size:12px;color:var(--ink-2);text-align:right;white-space:nowrap}
-  table.spec{width:100%;border-collapse:collapse;font-size:13.5px;margin-top:2px}
-  table.spec th{text-align:left;font-weight:500;color:var(--ink-2);font-size:12.5px;padding:9px 6px 7px;border-bottom:1px solid var(--paper-rule)}
-  table.spec td{padding:10px 6px;border-bottom:1px solid #EFEBE4;vertical-align:middle}
-  .redact{display:inline-block;height:.75em;border-radius:2px;background:#DEDAD2;vertical-align:middle}
-  .tag{font-family:var(--mono);font-size:11.5px;padding:2px 7px;border-radius:2px;white-space:nowrap;border:1px solid var(--paper-rule);color:var(--ink-2)}
-  .tag.mfr{background:var(--orange);border-color:var(--orange);color:var(--black)}
-  .tag.dst{border-color:#B9B3A9;color:var(--ink)}
-  .proof{font-family:var(--mono);font-size:11.5px;color:var(--ink);text-decoration:underline;text-decoration-color:var(--orange);text-underline-offset:3px;white-space:nowrap}
-  .sheet-foot{display:flex;justify-content:space-between;gap:12px;font-family:var(--mono);font-size:11.5px;color:var(--ink-2);padding-top:11px}
-  .stamp{position:absolute;right:-12px;top:-20px;transform:rotate(6deg);background:var(--black);color:var(--orange);border:1.5px solid var(--orange);border-radius:3px;padding:7px 11px;font-weight:600;font-size:15px;line-height:1.1;text-align:center}
-  .stamp small{display:block;font-weight:500;font-size:11px;color:var(--porcelain-2)}
+  /* price build-up */
+  .build{background:var(--ink-2);border:1px solid var(--rule-dark);border-radius:6px;padding:28px 28px 22px}
+  .build h2{font:600 15px/1.3 var(--body);color:var(--page)}
+  .build .sub{font-size:13.5px;color:var(--mute);margin-top:4px}
+  .chain{list-style:none;padding:0;margin:26px 0 0}
+  .chain li{display:grid;grid-template-columns:118px 1fr;gap:14px;align-items:center;margin-bottom:12px}
+  .chain .who{font-size:14px;color:#C9CDD1;line-height:1.25}
+  .chain .who small{display:block;color:var(--mute);font-size:12px}
+  .bar{height:30px;display:flex;border-radius:2px;overflow:hidden}
+  .bar span{height:100%}
+  .b-base{background:#4A535C}
+  .b-add{background:var(--signal)}
+  .b-add.o2{background:#F57B3A}
+  .b-add.o3{background:#F89A67}
+  .chain .total{border-top:1px solid var(--rule-dark);padding-top:14px;margin-top:6px}
+  .gap{display:flex;justify-content:space-between;gap:16px;margin-top:18px;padding-top:16px;border-top:1px solid var(--rule-dark);font-size:14px;color:#C9CDD1}
+  .gap b{color:var(--signal);font-weight:600;white-space:nowrap}
+  .note{font-size:12.5px;color:var(--mute);margin-top:14px}
 
-  section{padding:clamp(72px,10vh,120px) 0;border-top:1px solid var(--rule-2)}
-  h2{font-size:clamp(32px,3.8vw,52px)}
-  .intro{color:var(--porcelain-2);font-size:clamp(17px,1.25vw,19px);margin:16px 0 44px;max-width:56ch}
+  /* sections */
+  section{padding:104px 0}
+  .kicker{font-family:var(--head);font-weight:500;font-size:16px;color:var(--signal-ink);margin-bottom:14px}
+  h2.title{font-family:var(--head);font-weight:600;font-size:clamp(32px,3.6vw,44px);line-height:1.08;letter-spacing:-.01em;max-width:22em}
+  .intro{margin-top:18px;font-size:18.5px;color:var(--slate);max-width:38em}
+  .split{display:grid;grid-template-columns:360px 1fr;gap:72px}
 
-  .classes{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-  .class{background:var(--charcoal);border-radius:4px;padding:26px;border:1px solid var(--rule-2)}
-  .class.mfr{background:linear-gradient(160deg,var(--ember),var(--charcoal) 65%);border-color:rgba(255,89,0,.35)}
-  .class h3{font-size:22px;letter-spacing:-.02em;display:flex;align-items:center;gap:10px}
-  .class h3 .dot{width:9px;height:9px;border-radius:50%;background:var(--grey)}
-  .class.mfr h3 .dot{background:var(--orange)}
-  .class.dst h3 .dot{background:var(--porcelain)}
-  .class p{color:var(--porcelain-2);margin-top:12px;font-size:16px}
-  .class .use{margin-top:18px;padding-top:14px;border-top:1px solid var(--rule);font-size:15px;color:var(--porcelain)}
-  .class .use b{font-weight:500;color:var(--grey);display:block;font-size:13px;margin-bottom:3px}
+  /* record */
+  .record{padding:0;background:var(--paper);border-bottom:1px solid var(--rule)}
+  .record .wrap{display:grid;grid-template-columns:repeat(4,1fr)}
+  .stat{padding:40px 28px 38px 0;border-right:1px solid var(--rule)}
+  .stat + .stat{padding-left:28px}
+  .stat:last-child{border-right:0}
+  .stat b{display:block;font-family:var(--head);font-weight:600;font-size:46px;line-height:1;letter-spacing:-.02em}
+  .stat span{display:block;margin-top:10px;font-size:15px;color:var(--slate);line-height:1.4}
+  .record-note{background:var(--paper);padding:0 0 30px;font-size:14.5px;color:var(--slate)}
+  .record-note .wrap{border-top:1px solid var(--rule);padding-top:18px}
 
-  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:28px 40px;margin-top:8px}
-  .stats div{border-top:1px solid var(--rule);padding-top:14px}
-  .stats b{display:block;font-size:44px;font-weight:600;letter-spacing:-.03em;line-height:1;color:var(--porcelain)}
-  .stats span{display:block;margin-top:10px;color:var(--porcelain-2);font-size:15px;line-height:1.4}
-  .mats{margin-top:36px;color:var(--porcelain-2);font-size:16px;max-width:760px}
-  .mats b{color:var(--porcelain);font-weight:500}
-  @media (max-width:820px){.stats{grid-template-columns:1fr 1fr}.stats b{font-size:36px}}
-  .gets{display:grid;grid-template-columns:repeat(3,1fr);gap:36px 44px}
-  .gets h3{font-size:19px;letter-spacing:-.01em;padding-top:14px;border-top:1px solid var(--rule)}
-  .gets p{color:var(--porcelain-2);margin-top:8px;font-size:16px}
+  /* savings */
+  .levers{border-top:1px solid var(--ink)}
+  .lever{display:grid;grid-template-columns:1fr 1.35fr;gap:40px;padding:28px 0;border-bottom:1px solid var(--rule)}
+  .lever h3{font-family:var(--head);font-weight:600;font-size:23px;line-height:1.2}
+  .lever p{color:var(--slate)}
 
-  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;list-style:none;padding:0;margin:0;counter-reset:s}
-  .steps li{counter-increment:s}
-  .steps li::before{content:counter(s);display:block;font-weight:500;font-size:56px;line-height:1;letter-spacing:-.04em;color:var(--orange);margin-bottom:16px}
-  .steps h3{font-size:20px;letter-spacing:-.015em}
-  .steps p{color:var(--porcelain-2);margin-top:8px;font-size:16px}
+  /* classes table */
+  .classes{background:var(--paper);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .ctable{width:100%;border-collapse:collapse;margin-top:48px}
+  .ctable th,.ctable td{text-align:left;vertical-align:top;padding:20px 24px 20px 0;border-bottom:1px solid var(--rule)}
+  .ctable thead th,.ctable thead td{padding-top:0;border-bottom:1px solid var(--ink)}
+  .ctable tbody th{font-weight:500;color:var(--slate);font-size:15px;width:190px}
+  .ctable td{font-size:16px}
+  .pill{display:inline-block;font:600 13px/1 var(--body);padding:6px 10px;border-radius:3px}
+  .pill.mfr{background:var(--mfr-soft);color:var(--mfr)}
+  .pill.dst{background:var(--dst-soft);color:var(--dst)}
+  .pill.trd{background:#E8EAE6;color:#4B535B}
 
-  .cur{display:inline-flex;border-radius:3px;box-shadow:inset 0 0 0 1px var(--rule);margin-bottom:28px;overflow:hidden}
-  .cur button{font:inherit;font-size:14.5px;font-weight:500;background:transparent;color:var(--grey);border:0;padding:9px 16px;cursor:pointer}
-  .cur button[aria-pressed="true"]{background:var(--porcelain);color:var(--black)}
-  .plans{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:880px}
-  .plan{background:var(--charcoal);border:1px solid var(--rule-2);border-radius:4px;padding:30px}
-  .plan.main{border-color:var(--orange)}
-  .plan h3{font-size:20px;letter-spacing:-.015em}
-  .price{font-size:52px;font-weight:500;letter-spacing:-.04em;line-height:1;margin:16px 0 6px}
-  .was{font-size:17px;color:var(--grey);text-decoration:line-through;margin-left:10px;letter-spacing:0}
-  .plan .sub{color:var(--grey);font-size:15px}
-  .plan ul{list-style:none;padding:0;margin:22px 0 26px}
-  .plan li{padding:9px 0;border-top:1px solid var(--rule-2);font-size:15.5px}
-  .plan li:first-child{border-top:0}
-  .promise{margin-top:20px;max-width:880px;padding:20px 22px;border-left:3px solid var(--orange);background:var(--charcoal);border-radius:0 4px 4px 0}
-  .promise p{max-width:none}
-  .promise b{font-weight:500}
+  /* report */
+  .report{margin-top:48px;background:var(--paper);border:1px solid var(--rule);border-radius:6px;box-shadow:0 1px 0 rgba(17,20,23,.04),0 18px 40px -24px rgba(17,20,23,.25);overflow:hidden}
+  .rhead{display:flex;justify-content:space-between;gap:24px;align-items:flex-end;padding:26px 30px;border-bottom:1px solid var(--rule)}
+  .rhead .mat{font-family:var(--head);font-weight:600;font-size:24px;line-height:1.15}
+  .rhead .spec{font-size:14.5px;color:var(--slate);margin-top:4px}
+  .rhead .ref{font-size:13.5px;color:var(--slate);text-align:right;line-height:1.5}
+  .findings{display:grid;grid-template-columns:repeat(3,1fr);border-bottom:1px solid var(--rule);background:#FAFAF8}
+  .finding{padding:20px 30px;border-right:1px solid var(--rule)}
+  .finding:last-child{border-right:0}
+  .finding b{font-family:var(--head);font-weight:600;font-size:30px;line-height:1;display:block}
+  .finding span{display:block;font-size:14.5px;color:var(--slate);margin-top:6px;line-height:1.4}
+  .rtable{width:100%;border-collapse:collapse;font-size:15px}
+  .rtable th{font-weight:500;font-size:13px;color:var(--slate);text-align:left;padding:14px 16px;border-bottom:1px solid var(--rule)}
+  .rtable td{padding:14px 16px;border-bottom:1px solid #ECEEEA;vertical-align:middle}
+  .rtable tr:last-child td{border-bottom:0}
+  .rtable th:first-child,.rtable td:first-child{padding-left:30px}
+  .rtable th:last-child,.rtable td:last-child{padding-right:30px}
+  .hide{display:inline-block;height:11px;border-radius:2px;background:#DADDD8;vertical-align:middle}
+  .ev{color:var(--slate)}
+  .warn{color:var(--signal-ink)}
+  .rfoot{display:flex;justify-content:space-between;gap:20px;padding:16px 30px;border-top:1px solid var(--rule);font-size:14px;color:var(--slate);background:#FAFAF8}
 
-  .about{display:grid;grid-template-columns:1fr 1.25fr;gap:56px;align-items:start}
-  .about .big{font-size:clamp(24px,2.3vw,32px);line-height:1.25;letter-spacing:-.02em;font-weight:500;max-width:none}
-  .about p+p{margin-top:16px}
-  .cando{columns:2;column-gap:28px;padding:0;margin:14px 0 0;list-style:none;color:var(--porcelain-2);font-size:16px}
-  .cando li{padding:6px 0 6px 16px;position:relative;break-inside:avoid}
-  .cando li::before{content:"";position:absolute;left:0;top:15px;width:6px;height:6px;background:var(--orange);border-radius:1px}
+  /* steps */
+  .steps{list-style:none;padding:0;margin:56px 0 0;display:grid;grid-template-columns:repeat(3,1fr);gap:40px;counter-reset:s}
+  .steps li{counter-increment:s;border-top:1px solid var(--ink);padding-top:20px}
+  .steps li::before{content:counter(s);display:block;font-family:var(--head);font-weight:600;font-size:15px;color:var(--signal-ink);margin-bottom:12px}
+  .steps h3{font-family:var(--head);font-weight:600;font-size:23px;line-height:1.2}
+  .steps p{color:var(--slate);margin-top:8px}
 
-  form{display:grid;grid-template-columns:1fr 1fr;gap:18px 18px;max-width:880px}
+  /* pricing */
+  .pricing{background:var(--ink);color:var(--page)}
+  .pricing .intro{color:#C9CDD1}
+  .cur{display:inline-flex;margin-top:32px;border:1px solid var(--rule-dark);border-radius:4px;padding:3px}
+  .cur button{font:500 14px/1 var(--body);background:transparent;color:#C9CDD1;border:0;padding:9px 14px;border-radius:3px;cursor:pointer}
+  .cur button[aria-pressed="true"]{background:var(--page);color:var(--ink)}
+  .plans{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px}
+  .plan{border:1px solid var(--rule-dark);border-radius:6px;padding:34px}
+  .plan.main{background:var(--ink-2);border-color:rgba(242,243,239,.28)}
+  .plan h3{font-family:var(--head);font-weight:600;font-size:22px}
+  .price{display:flex;align-items:baseline;gap:12px;margin-top:16px}
+  .price .now{font-family:var(--head);font-weight:600;font-size:52px;line-height:1;letter-spacing:-.02em}
+  .price .was{color:var(--mute);text-decoration:line-through;font-size:18px}
+  .plan .for{color:var(--mute);font-size:15px;margin-top:8px}
+  .plan ul{list-style:none;padding:0;margin:26px 0 30px;border-top:1px solid var(--rule-dark)}
+  .plan li{padding:11px 0;border-bottom:1px solid var(--rule-dark);font-size:16px;color:#DADDE0}
+  .terms-box{margin-top:24px;border-left:3px solid var(--signal);padding:4px 0 4px 20px;color:#C9CDD1;max-width:52em}
+  .terms-box b{color:var(--page);font-weight:600}
+
+  /* founder */
+  .founder{display:grid;grid-template-columns:360px 1fr;gap:72px}
+  .letter p{font-size:19px;line-height:1.65}
+  .letter p + p{margin-top:18px}
+  .sign{margin-top:26px;font-size:16px;color:var(--slate)}
+  .sign b{color:var(--ink);font-weight:600;display:block;font-family:var(--head);font-size:20px}
+  .cando{list-style:none;padding:0;margin:40px 0 0;display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--rule)}
+  .cando li{padding:12px 0;border-bottom:1px solid var(--rule);font-size:16px}
+  .cando li:nth-child(odd){padding-right:24px}
+
+  /* form */
+  .request{background:var(--paper);border-top:1px solid var(--rule)}
+  form{display:grid;grid-template-columns:1fr 1fr;gap:20px 24px;margin-top:44px;max-width:880px}
   label{display:block;font-size:14.5px;font-weight:500;margin-bottom:7px}
-  label .opt{color:var(--grey);font-weight:400}
-  input,textarea,select{width:100%;font:inherit;font-size:16px;color:var(--porcelain);background:var(--charcoal);border:1px solid var(--rule);border-radius:3px;padding:12px 14px}
-  input::placeholder,textarea::placeholder{color:#6E6963}
-  input:hover,textarea:hover,select:hover{border-color:var(--grey)}
-  input:focus,textarea:focus,select:focus{outline:none;border-color:var(--orange)}
+  .opt{color:var(--mute);font-weight:400}
+  input,select,textarea{width:100%;font:16px/1.4 var(--body);color:var(--ink);background:var(--page);border:1px solid #C7CBC5;border-radius:4px;padding:12px 13px}
+  input:focus,select:focus,textarea:focus{outline:2px solid var(--signal);outline-offset:0;border-color:transparent;background:#fff}
   textarea{min-height:120px;resize:vertical}
   .full{grid-column:1/-1}
-  .form-foot{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
-  .form-foot p{color:var(--grey);font-size:15px}
-  .form-foot a{color:var(--porcelain)}
+  .form-foot{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+  .form-foot p{color:var(--slate);font-size:15px}
 
-  details{border-bottom:1px solid var(--rule);padding:18px 0;max-width:880px}
-  summary{cursor:pointer;font-weight:500;font-size:17.5px;list-style:none;display:flex;justify-content:space-between;gap:16px}
-  summary::-webkit-details-marker{display:none}
-  summary::after{content:"+";color:var(--orange);font-size:22px;line-height:1}
-  details[open] summary::after{content:"\2212"}
-  details p{color:var(--porcelain-2);margin-top:10px;font-size:16px}
+  /* faq */
+  .faq details{border-bottom:1px solid var(--rule)}
+  .faq summary{cursor:pointer;list-style:none;padding:22px 40px 22px 0;font-family:var(--head);font-weight:600;font-size:21px;position:relative}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";position:absolute;right:4px;top:18px;font:400 26px/1 var(--body);color:var(--slate)}
+  .faq details[open] summary::after{content:"\2212"}
+  .faq details p{padding:0 0 24px;color:var(--slate);max-width:44em}
+  .faq-list{border-top:1px solid var(--ink)}
 
-  footer{border-top:1px solid var(--rule-2);padding:32px 0 48px;color:var(--grey);font-size:14.5px}
-  footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-  footer a{color:var(--porcelain-2);text-decoration:none;margin-left:18px}
-  footer a:hover{color:var(--porcelain)}
+  footer{background:var(--ink);color:#C9CDD1;padding:48px 0;font-size:15px}
+  footer .wrap{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;align-items:center}
+  footer a{color:var(--page);text-decoration:none;margin-left:24px}
+  footer a:hover{text-decoration:underline}
 
-  @media (max-width:900px){
-    .hero{grid-template-columns:1fr}
-    .classes,.gets,.steps{grid-template-columns:1fr 1fr}
-    .about{grid-template-columns:1fr;gap:28px}
+  @media (max-width:980px){
+    .hero .wrap,.split,.founder{grid-template-columns:1fr;gap:48px}
+    .record .wrap{grid-template-columns:1fr 1fr}
+    .stat:nth-child(2){border-right:0}
+    .stat:nth-child(3){padding-left:0}
+    .stat:nth-child(-n+2){border-bottom:1px solid var(--rule)}
+    .lever{grid-template-columns:1fr;gap:8px}
+    .steps{grid-template-columns:1fr;gap:32px}
+    .plans{grid-template-columns:1fr}
   }
-  @media (max-width:640px){
-    .nav .links a.txt{display:none}
-    .classes,.gets,.steps,.plans,form{grid-template-columns:1fr}
-    .cando{columns:1}
-    .stamp{right:8px;top:-24px}
-    .sheet{padding:18px 14px 14px}
-    .sheet-head .id{display:none}
-    table.spec .hide-sm{display:none}
-    .redact{max-width:72px}
-    .proof{white-space:normal}
-    table.spec{font-size:12.5px}
-    .tag{font-size:10.5px;padding:2px 5px}
-    .ctas .btn{flex:1 1 100%}
-    .hero{padding-top:28px}
+  @media (max-width:720px){
+    .wrap{padding:0 20px}
+    section{padding:72px 0}
+    .hero{padding:56px 0 64px}
+    .top nav a:not(.cta){display:none}
+    .findings{grid-template-columns:1fr}
+    .finding{border-right:0;border-bottom:1px solid var(--rule)}
+    .rhead{flex-direction:column;align-items:flex-start}
+    .rhead .ref{text-align:left}
+    .rtable .m-hide{display:none}
+    .rtable{font-size:14px;table-layout:fixed}
+    .rtable th,.rtable td{padding:12px 8px}
+    .rtable th:first-child,.rtable td:first-child{width:72px}
+    .rtable .hide{width:56px!important}
+    .rtable .pill{font-size:12px;padding:5px 7px}
+    .rtable th:first-child,.rtable td:first-child{padding-left:20px}
+    .rtable th:last-child,.rtable td:last-child{padding-right:20px}
+    .rfoot{flex-direction:column;padding:16px 20px}
+    .ctable thead{display:none}
+    .ctable,.ctable tbody,.ctable tr,.ctable th,.ctable td{display:block;width:100%}
+    .ctable tr{border-bottom:1px solid var(--rule);padding:18px 0}
+    .ctable th,.ctable td{border:0;padding:4px 0}
+    .ctable td::before{content:attr(data-k);display:block;font-weight:600;font-size:13px;color:var(--slate);margin-top:8px}
+    form{grid-template-columns:1fr}
+    .cando{grid-template-columns:1fr}
+    .cando li:nth-child(odd){padding-right:0}
+    .chain li{grid-template-columns:96px 1fr}
+    .stat b{font-size:38px}
+    footer a{margin:0 18px 0 0}
   }
 </style>
 </head>
 <body>
-<header class="nav">
+
+<header class="top">
   <div class="wrap">
-    <a class="brand" href="#" aria-label="Selqentra home"><span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>SELQENTRA</a>
-    <nav class="links" aria-label="Primary">
-      <a class="txt" href="#how">How it works</a>
-      <a class="txt" href="#pricing">Pricing</a>
-      <a class="btn primary sm" href="#request">Request a shortlist</a>
+    <a class="brand" href="#" aria-label="Selqentra home"><span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Selqentra</a>
+    <nav aria-label="Primary">
+      <a href="#savings">Savings</a>
+      <a href="#report">Sample report</a>
+      <a href="#pricing">Pricing</a>
+      <a class="cta" href="#request">Request a report</a>
     </nav>
   </div>
 </header>
 
 <main>
-<div class="wrap">
-  <div class="hero">
+<div class="hero">
+  <div class="wrap">
     <div>
-      <h1>Buy closer to the source. <span>Pay less for the same material.</span></h1>
-      <p class="lede">Every trader between you and the plant adds a margin, and most buyers can't see how many there are. Tell us a material you buy, or want to. In 72 hours we show you who actually makes it, who only resells it, and the proof, so you can negotiate with the source or keep your current supplier honest.</p>
+      <h1>Most raw material prices carry a margin nobody told you about.</h1>
+      <p class="lede">Selqentra traces who actually makes the materials you buy and who sits in between. You get the producers, the resellers and the evidence for each, so your next negotiation starts from the source.</p>
       <div class="ctas">
-        <a class="btn primary" href="#request">Request a shortlist</a>
-        <a class="btn ghost" href="#pricing">See pricing</a>
+        <a class="btn primary" href="#request">Request a sourcing report</a>
+        <a class="btn line" href="#report">See a sample report</a>
       </div>
-      <p class="fine"><b>Launch offer for the first 5 clients:</b> you pay only after you receive your shortlist.</p>
+      <p class="terms"><b>72 hours. Paid after delivery.</b> ₹2,999 or $49 per material.</p>
     </div>
 
-    <figure class="sheet" aria-label="Example shortlist with supplier names hidden">
-      <div class="stamp">8 of 8<small>proof checked</small></div>
-      <div class="sheet-head">
-        <div>
-          <div class="t">Titanium dioxide, rutile</div>
-          <div class="m">CAS 13463-67-7 / 2 MT a month / delivered to India</div>
-        </div>
-        <div class="id">Example<br>SL-0001</div>
-      </div>
-      <table class="spec">
-        <thead><tr><th>Supplier</th><th>Type</th><th class="hide-sm">Location</th><th>Proof</th></tr></thead>
-        <tbody>
-          <tr><td><span class="redact" style="width:112px"></span></td><td><span class="tag mfr">Manufacturer</span></td><td class="hide-sm"><span class="redact" style="width:66px"></span></td><td><span class="proof">product page</span></td></tr>
-          <tr><td><span class="redact" style="width:92px"></span></td><td><span class="tag mfr">Manufacturer</span></td><td class="hide-sm"><span class="redact" style="width:54px"></span></td><td><span class="proof">plant listing</span></td></tr>
-          <tr><td><span class="redact" style="width:124px"></span></td><td><span class="tag dst">Distributor</span></td><td class="hide-sm"><span class="redact" style="width:62px"></span></td><td><span class="proof">principal named</span></td></tr>
-          <tr><td><span class="redact" style="width:100px"></span></td><td><span class="tag mfr">Manufacturer</span></td><td class="hide-sm"><span class="redact" style="width:74px"></span></td><td><span class="proof">shipment record</span></td></tr>
-          <tr><td><span class="redact" style="width:84px"></span></td><td><span class="tag">Trader</span></td><td class="hide-sm"><span class="redact" style="width:58px"></span></td><td><span class="proof">product page</span></td></tr>
-        </tbody>
-      </table>
-      <div class="sheet-foot"><span>+ who sits between you and the plant</span><span>+ RFQ email</span></div>
+    <figure class="build" aria-labelledby="build-t">
+      <h2 id="build-t">How a price builds up between the plant and you</h2>
+      <p class="sub">Price per kg, plant gate = 100</p>
+      <ol class="chain">
+        <li><span class="who">Producer<small>plant gate</small></span><div class="bar" role="img" aria-label="100"><span class="b-base" style="width:76.9%"></span></div></li>
+        <li><span class="who">Importer<small>+ freight, duty, margin</small></span><div class="bar" role="img" aria-label="108"><span class="b-base" style="width:76.9%"></span><span class="b-add" style="width:6.2%"></span></div></li>
+        <li><span class="who">Distributor<small>+ stock, small packs</small></span><div class="bar" role="img" aria-label="118"><span class="b-base" style="width:76.9%"></span><span class="b-add" style="width:6.2%"></span><span class="b-add o2" style="width:7.7%"></span></div></li>
+        <li class="total"><span class="who">Trader<small>what many buyers pay</small></span><div class="bar" role="img" aria-label="130"><span class="b-base" style="width:76.9%"></span><span class="b-add" style="width:6.2%"></span><span class="b-add o2" style="width:7.7%"></span><span class="b-add o3" style="width:9.2%"></span></div></li>
+      </ol>
+      <div class="gap"><span>Layers you could skip or use as leverage</span><b class="num">up to 30</b></div>
+      <p class="note">Illustration only. Real margins depend on the material, volume and market. Finding out what they are for yours is the job.</p>
     </figure>
   </div>
 </div>
 
-<section id="record">
+<div class="record" aria-label="Track record">
   <div class="wrap">
-    <h2>Done before, many times</h2>
-    <p class="intro">The researcher behind Selqentra has sourced raw materials professionally since mid-2025, for manufacturers in personal care, coatings and inks, paper, composites, pharma, food and fragrance.</p>
-    <div class="stats">
-      <div><b>280+</b><span>sourcing research projects delivered</span></div>
-      <div><b>190+</b><span>supplier lists built and verified</span></div>
-      <div><b>160+</b><span>chemicals by CAS number, plus 50 blends and formulations</span></div>
-      <div><b>98%</b><span>delivered on or before the agreed date</span></div>
-    </div>
-    <p class="mats"><b>Materials include</b> titanium dioxide, epoxy resins, maleic anhydride, triethanolamine, sodium hyaluronate, citric acid, calcium carbonate and peppermint oil.</p>
+    <div class="stat"><b class="num">280+</b><span>sourcing research projects delivered since mid-2025</span></div>
+    <div class="stat"><b class="num">190+</b><span>supplier lists built and verified</span></div>
+    <div class="stat"><b class="num">160+</b><span>chemicals researched by CAS number, plus 50 blends</span></div>
+    <div class="stat"><b class="num">98%</b><span>delivered on or before the agreed date</span></div>
   </div>
-</section>
+</div>
+<div class="record-note">
+  <div class="wrap">Work done for manufacturers in personal care, coatings and inks, paper, composites, pharma, food and fragrance. Materials include titanium dioxide, epoxy resins, maleic anhydride, triethanolamine, sodium hyaluronate, citric acid and peppermint oil.</div>
+</div>
 
 <section id="savings">
-  <div class="wrap">
-    <h2>Where the savings come from</h2>
-    <p class="intro">The supplier list is the means. The point is what it lets you do with your next order.</p>
-    <div class="gets">
-      <div><h3>Cut a layer of margin</h3><p>If the company you buy from turns out to be a trader, you can go to the producer or its named distributor and keep the difference.</p></div>
-      <div><h3>Negotiate with real alternatives</h3><p>A quote from a genuine second source is the strongest argument in any price discussion, even if you stay with your current supplier.</p></div>
-      <div><h3>Waste fewer samples</h3><p>Testing material from resellers who can't repeat a batch costs weeks. Start with the companies that make it.</p></div>
-      <div><h3>Lower supply risk</h3><p>A verified backup producer means one plant shutdown or one broken promise doesn't stop your line.</p></div>
-      <div><h3>Check before you commit volume</h3><p>Certifications and plant evidence for each name, so you know what you're switching to before the first big order.</p></div>
-      <div><h3>Know when your price is fair</h3><p>If you already buy from the producer, we tell you that too. A defensible price is a result as well.</p></div>
+  <div class="wrap split">
+    <div>
+      <p class="kicker">Where the savings come from</p>
+      <h2 class="title">A list of suppliers is the means. A better price is the point.</h2>
+    </div>
+    <div class="levers">
+      <div class="lever"><h3>Skip a layer</h3><p>If the company you buy from turns out to be a trader, you can go to the producer or its named distributor and keep the difference.</p></div>
+      <div class="lever"><h3>Negotiate with a real alternative</h3><p>A quote from a genuine second producer is the strongest argument in any price discussion, even if you end up staying with your current supplier.</p></div>
+      <div class="lever"><h3>Stop paying for bad samples</h3><p>Testing material from resellers who can't repeat a batch costs weeks and lab time. Start with the companies that make it.</p></div>
+      <div class="lever"><h3>Keep the line running</h3><p>A verified backup producer means one plant shutdown or one missed shipment doesn't stop your production.</p></div>
+      <div class="lever"><h3>Know when your price is already fair</h3><p>If you already buy from the producer, we tell you so. A price you can defend to your finance team is a result too.</p></div>
     </div>
   </div>
 </section>
 
-<section id="classes">
+<section class="classes" aria-labelledby="classes-t">
   <div class="wrap">
-    <h2>Three kinds of supplier. Most lists can't tell them apart.</h2>
-    <p class="intro">Directories and marketplaces mix them together, and many traders present themselves as manufacturers. We label every name on evidence, not on what its website claims.</p>
-    <div class="classes">
-      <div class="class mfr"><h3><span class="dot"></span>Manufacturer</h3><p>Owns the plant and makes the product. Registrations in its own name, its own technical documents.</p><div class="use"><b>Why it matters</b>Best price and spec control once you buy in volume.</div></div>
-      <div class="class dst"><h3><span class="dot"></span>Distributor</h3><p>Resells named producers under agreement. Adds stock, small pack sizes and local delivery.</p><div class="use"><b>Why it matters</b>Often the right first buy for a new product or a small first order.</div></div>
-      <div class="class"><h3><span class="dot"></span>Trader</h3><p>Buys and resells without a fixed source. Fine for spot buys, risky for a product you'll repeat.</p><div class="use"><b>Why it matters</b>Batch-to-batch consistency is not guaranteed.</div></div>
-    </div>
+    <h2 class="title" id="classes-t">Three kinds of supplier. Most directories can't tell them apart.</h2>
+    <p class="intro">On IndiaMART, Alibaba and trade directories, traders routinely list themselves as manufacturers. We label each company on evidence, not on what its website claims.</p>
+    <table class="ctable">
+      <thead><tr><td></td><th scope="col"><span class="pill mfr">Manufacturer</span></th><th scope="col"><span class="pill dst">Distributor</span></th><th scope="col"><span class="pill trd">Trader</span></th></tr></thead>
+      <tbody>
+        <tr><th scope="row">What they are</th><td data-k="Manufacturer">Owns the plant and makes the material.</td><td data-k="Distributor">Resells named producers under an agreement.</td><td data-k="Trader">Buys and resells, with no fixed source.</td></tr>
+        <tr><th scope="row">How we prove it</th><td data-k="Manufacturer">Plant address, production licences, export shipments in its own name.</td><td data-k="Distributor">The producer names them, or they publish the producer's documents.</td><td data-k="Trader">No plant, source changes between shipments, documents carry another company's name.</td></tr>
+        <tr><th scope="row">When to buy from them</th><td data-k="Manufacturer">Repeat volume where price and spec control matter.</td><td data-k="Distributor">Small first orders, local stock, quick delivery.</td><td data-k="Trader">One-off spot buys. Risky for anything you'll reorder.</td></tr>
+      </tbody>
+    </table>
   </div>
 </section>
 
-<section id="what">
+<section id="report">
   <div class="wrap">
-    <h2>What you get</h2>
-    <p class="intro">A spreadsheet you can act on the same day, not a page of directory links.</p>
-    <div class="gets">
-      <div><h3>Usually 8 to 12 suppliers</h3><p>Manufacturers first, then the distributors worth calling. For niche materials, we tell you upfront how many real producers exist.</p></div>
-      <div><h3>Proof for every name</h3><p>A link to the supplier's own product page, plant listing or shipment record. No proof, no place on the list.</p></div>
-      <div><h3>Certifications listed</h3><p>GMP, ISO, FSSAI, COSMOS, Halal, Kosher, REACH: whatever each supplier publicly holds, so you can filter fast.</p></div>
-      <div><h3>Location and contact route</h3><p>Where they are, and the best way to reach the people who quote.</p></div>
-      <div><h3>A ready RFQ email</h3><p>A quote request written for your spec, quantity and destination. Send it to the whole list in ten minutes.</p></div>
-      <div><h3>On your side</h3><p>We take no commission from suppliers. Nobody pays to be on your list, so it ranks only on fit.</p></div>
-    </div>
+    <p class="kicker">What you receive</p>
+    <h2 class="title">A report you can act on the same day.</h2>
+    <p class="intro">Every name comes with the evidence behind its label, its certifications and the best way to reach the people who quote. Here is the layout, with names hidden.</p>
+
+    <figure class="report" aria-label="Example sourcing report, supplier names hidden">
+      <div class="rhead">
+        <div>
+          <div class="mat">Titanium dioxide, rutile grade</div>
+          <div class="spec">CAS 13463-67-7, 2 MT a month, delivered to India</div>
+        </div>
+        <div class="ref">Example layout<br>Names hidden</div>
+      </div>
+      <div class="findings">
+        <div class="finding"><b class="num">3 of 8</b><span>companies selling as "manufacturers" make it themselves</span></div>
+        <div class="finding"><b class="num">2</b><span>distributors named by a producer, with stock in India</span></div>
+        <div class="finding"><b class="num">3</b><span>traders presenting as producers, flagged</span></div>
+      </div>
+      <table class="rtable">
+        <thead><tr><th>Supplier</th><th>Classified as</th><th class="m-hide">Made in</th><th>Evidence</th><th class="m-hide">Certifications</th></tr></thead>
+        <tbody>
+          <tr><td><span class="hide" style="width:128px"></span></td><td><span class="pill mfr">Manufacturer</span></td><td class="m-hide">India</td><td class="ev">Plant listing, export records</td><td class="m-hide">ISO 9001, REACH</td></tr>
+          <tr><td><span class="hide" style="width:104px"></span></td><td><span class="pill mfr">Manufacturer</span></td><td class="m-hide">China</td><td class="ev">Shipments to India in own name</td><td class="m-hide">ISO 9001, ISO 14001</td></tr>
+          <tr><td><span class="hide" style="width:140px"></span></td><td><span class="pill mfr">Manufacturer</span></td><td class="m-hide">Saudi Arabia</td><td class="ev">Producer site, grade TDS</td><td class="m-hide">ISO 9001</td></tr>
+          <tr><td><span class="hide" style="width:116px"></span></td><td><span class="pill dst">Distributor</span></td><td class="m-hide">India</td><td class="ev">Named on producer's site</td><td class="m-hide">ISO 9001</td></tr>
+          <tr><td><span class="hide" style="width:96px"></span></td><td><span class="pill trd">Trader</span></td><td class="m-hide">India</td><td class="ev warn">Claims manufacturing, no plant found</td><td class="m-hide">None listed</td></tr>
+        </tbody>
+      </table>
+      <div class="rfoot"><span>+ contact route and notes for each company, 3 more rows</span><span>+ quote request email written for your spec</span></div>
+    </figure>
   </div>
 </section>
 
-<section id="how">
+<section id="how" class="classes">
   <div class="wrap">
-    <h2>How it works</h2>
-    <p class="intro">Five minutes of your time, then 72 hours of ours.</p>
+    <h2 class="title">Five minutes of your time. Then 72 hours of ours.</h2>
     <ol class="steps">
-      <li><h3>You send the request</h3><p>Material, grade, quantity and where it needs to go. A product name, a TDS or a competitor's label is enough to start.</p></li>
-      <li><h3>We research and verify</h3><p>Producer sites, customs shipment records and certification registers, then every supplier is checked against your spec.</p></li>
-      <li><h3>You get the shortlist</h3><p>Within 72 hours, by email or WhatsApp. One round of follow-up questions is included.</p></li>
+      <li><h3>Tell us the material</h3><p>Name, grade, quantity and where it needs to go. A product name, a TDS or a competitor's label is enough to start.</p></li>
+      <li><h3>We trace and verify</h3><p>Producer sites, customs shipment records, licences and certification registers. Every company is checked against your spec.</p></li>
+      <li><h3>You get the report</h3><p>By email or WhatsApp within 72 hours, with one round of follow-up questions included.</p></li>
     </ol>
   </div>
 </section>
 
-<section id="pricing">
+<section id="pricing" class="pricing">
   <div class="wrap">
-    <h2>Pricing</h2>
-    <p class="intro">One price per material. If it moves your price by 1% on a single ₹3 lakh or $5,000 order, it has paid for itself.</p>
+    <h2 class="title">One price per material.</h2>
+    <p class="intro">If it improves your price by 1% on a single ₹3 lakh or $5,000 order, it has paid for itself.</p>
     <div class="cur" role="group" aria-label="Currency">
-      <button type="button" data-cur="inr" aria-pressed="true">India (INR)</button>
-      <button type="button" data-cur="usd" aria-pressed="false">International (USD)</button>
+      <button type="button" data-cur="inr" aria-pressed="true">India, INR</button>
+      <button type="button" data-cur="usd" aria-pressed="false">International, USD</button>
     </div>
     <div class="plans">
       <div class="plan main">
-        <h3>One shortlist</h3>
-        <div class="price"><span data-p="one">₹2,999</span><span class="was" data-p="one-was">₹4,999</span></div>
-        <div class="sub">Launch price, one material</div>
+        <h3>One material</h3>
+        <div class="price"><span class="now num" data-p="one">₹2,999</span><span class="was num" data-p="one-was">₹4,999</span></div>
+        <p class="for">Launch price</p>
         <ul>
-          <li>Usually 8 to 12 verified suppliers</li>
-          <li>Each labelled manufacturer, distributor or trader</li>
-          <li>Proof link, location, certifications</li>
-          <li>RFQ email for your spec</li>
+          <li>Usually 8 to 12 companies, each classified</li>
+          <li>Evidence, location and certifications for every name</li>
+          <li>Where you can cut a layer, flagged</li>
+          <li>Quote request email for your spec</li>
           <li>Delivered in 72 hours</li>
         </ul>
-        <a class="btn primary" href="#request">Request a shortlist</a>
+        <a class="btn primary" href="#request">Request a report</a>
       </div>
       <div class="plan">
-        <h3>Three-pack</h3>
-        <div class="price"><span data-p="three">₹7,499</span><span class="was" data-p="three-was">₹14,997</span></div>
-        <div class="sub">Three materials, or one formula's key inputs</div>
+        <h3>Three materials</h3>
+        <div class="price"><span class="now num" data-p="three">₹7,499</span><span class="was num" data-p="three-was">₹14,997</span></div>
+        <p class="for">Or the key inputs of one formula</p>
         <ul>
-          <li>Everything in one shortlist, three times</li>
-          <li>Suppliers who cover several of your inputs flagged</li>
+          <li>Everything in the single report, three times</li>
+          <li>Producers who can supply several of your inputs, flagged</li>
           <li>Delivered in 5 working days</li>
         </ul>
-        <a class="btn ghost" href="#request">Request a three-pack</a>
+        <a class="btn line" href="#request">Request three</a>
       </div>
     </div>
-    <div class="promise"><p><b>Pay after delivery.</b> Before we start, we check your material and tell you how many verified suppliers to expect. Niche materials may only have a handful of real producers, and we say so upfront. You pay by <span data-pay>UPI</span> within 3 days of delivery, and nothing at all if we deliver fewer than we promised.</p></div>
+    <div class="terms-box"><p><b>Paid after delivery.</b> Before we start, we check your material and tell you how many verified producers to expect. Some niche materials have only a handful worldwide, and we say so upfront. You pay by <span data-pay>UPI</span> within 3 days of delivery, and nothing at all if we deliver fewer than we said.</p></div>
   </div>
 </section>
 
 <section id="about">
-  <div class="wrap about">
-    <p class="big">Selqentra is run by a working supplier researcher who spends every day finding producers of chemicals, polymers, actives and food ingredients for manufacturers and brands that need options they can trust.</p>
+  <div class="wrap founder">
     <div>
-      <p class="muted">Most buyers find suppliers on IndiaMART, Alibaba or through a friend. That surfaces whoever pays for visibility, mixes traders in with real producers, and misses the manufacturers who never advertise. We work the other way: start from who can actually make it, then check each one.</p>
-      <p>What we source:</p>
+      <h2 class="title">One researcher, start to finish.</h2>
+    </div>
+    <div class="letter">
+      <p>Since mid-2025 I've been finding producers of chemicals, polymers, food ingredients and actives for manufacturers who need options they can trust. The pattern repeats: the first page of any directory is mostly resellers, and the plants that make the material rarely advertise.</p>
+      <p>Selqentra is that same research, sold directly to the buyers who pay the price. I don't take commission from suppliers, nobody pays to appear in your report, and your request is never shared.</p>
+      <p class="sign"><b>Pratyush</b>Founder, Selqentra</p>
       <ul class="cando">
         <li>Specialty and industrial chemicals</li>
         <li>Polymers, resins and additives</li>
         <li>Paint, coating, ink and adhesive raw materials</li>
         <li>Pharma excipients and intermediates</li>
-        <li>Food ingredients, flours, sugars, oils</li>
+        <li>Food ingredients, flours, sugars and oils</li>
         <li>Nutraceutical and supplement ingredients</li>
         <li>Cosmetic actives, botanicals and essential oils</li>
         <li>Contract and private-label manufacturers</li>
@@ -358,21 +436,21 @@
   </div>
 </section>
 
-<section id="request">
+<section id="request" class="request">
   <div class="wrap">
-    <h2>Request a shortlist</h2>
-    <p class="intro">We reply within 12 hours to confirm scope. Nothing to pay until you have the shortlist.</p>
+    <h2 class="title">Tell us what you buy.</h2>
+    <p class="intro">We reply within 12 hours to confirm scope and how many producers to expect. Nothing to pay until you have the report.</p>
     <form id="req" method="POST" action="https://formsubmit.co/selqentra@gmail.com">
       <div><label for="f-name">Your name</label><input id="f-name" name="name" required autocomplete="name"></div>
-      <div><label for="f-email">Email</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
-      <div><label for="f-co">Brand or company <span class="opt">(optional)</span></label><input id="f-co" name="company" autocomplete="organization"></div>
+      <div><label for="f-email">Work email</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
+      <div><label for="f-co">Company <span class="opt">(optional)</span></label><input id="f-co" name="company" autocomplete="organization"></div>
       <div><label for="f-wa">WhatsApp <span class="opt">(optional)</span></label><input id="f-wa" name="whatsapp" type="tel" autocomplete="tel"></div>
-      <div class="full"><label for="f-need">What do you need?</label><textarea id="f-need" name="need" required placeholder="e.g. Niacinamide, cosmetic grade, 25 kg to start, delivered to Mumbai. Or: rutile titanium dioxide for a paint line, 2 MT a month, a second source to our current supplier."></textarea></div>
+      <div class="full"><label for="f-need">Material and spec</label><textarea id="f-need" name="need" required placeholder="e.g. Rutile titanium dioxide for a paint line, 2 MT a month. We buy from a trader today and want to know who makes it."></textarea></div>
       <div><label for="f-qty">Quantity <span class="opt">(rough is fine)</span></label><input id="f-qty" name="quantity"></div>
       <div><label for="f-dest">Delivery country or city</label><input id="f-dest" name="destination"></div>
-      <div><label for="f-plan">Plan</label><select id="f-plan" name="plan"><option>One shortlist</option><option>Three-pack</option><option>Not sure yet</option></select></div>
+      <div><label for="f-plan">Plan</label><select id="f-plan" name="plan"><option>One material</option><option>Three materials</option><option>Not sure yet</option></select></div>
       <div><label for="f-when">Needed by <span class="opt">(optional)</span></label><input id="f-when" name="deadline"></div>
-      <input type="hidden" name="_subject" value="New shortlist request">
+      <input type="hidden" name="_subject" value="New sourcing report request">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_next" id="f-next" value="/thanks.html">
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
@@ -384,17 +462,18 @@
   </div>
 </section>
 
-<section id="faq">
-  <div class="wrap">
-    <h2>Questions</h2>
-    <div style="margin-top:28px">
-      <details><summary>How much will I save?</summary><p>It depends on how many layers sit between you and the plant today. We don't promise a percentage because we haven't seen your quotes. What we promise is that you'll know who makes the material, so the next negotiation starts from facts.</p></details>
-      <details><summary>Do you give prices?</summary><p>Suppliers quote against a specific request, so prices come from the RFQ you send. The shortlist includes any public price signals we find, and the RFQ email asks for price, MOQ and lead time in one go.</p></details>
-      <details><summary>What if my material is niche?</summary><p>Some materials have only three or four real producers worldwide. We check before we start and tell you what to expect, so you pay for a complete picture, not a padded list.</p></details>
-      <details><summary>Will you contact suppliers for me?</summary><p>Not in the base shortlist, so your request stays private until you choose to send it. If you want us to collect and compare quotes, ask and we'll scope it.</p></details>
-      <details><summary>Is my product idea kept confidential?</summary><p>Yes. Your request is used only for your research, never shared with suppliers or other clients. We're happy to sign your NDA.</p></details>
-      <details><summary>What if I only know the product, not the material?</summary><p>Send the product, a competitor's label, the ingredient list or the TDS of what you buy now. We'll work out what to source and confirm with you before starting.</p></details>
-      <details><summary>Where are the suppliers from?</summary><p>Wherever the best fit is. For Indian buyers we start with Indian producers; for international buyers we cover India, China, Europe and the US unless you tell us otherwise.</p></details>
+<section id="faq" class="faq">
+  <div class="wrap split">
+    <div>
+      <h2 class="title">Before you ask.</h2>
+    </div>
+    <div class="faq-list">
+      <details><summary>How much will I save?</summary><p>It depends on how many layers sit between you and the plant today. We don't promise a percentage because we haven't seen your quotes. What we do promise is that you'll know who makes the material, so the next negotiation starts from facts.</p></details>
+      <details><summary>Do you give prices?</summary><p>Producers quote against a specific request, so prices come from the quote request you send. The report includes any public price signals we find, and the email asks for price, MOQ and lead time in one go.</p></details>
+      <details><summary>What if my material is niche?</summary><p>Some materials have three or four real producers worldwide. We check before we start and tell you what to expect, so you pay for a complete picture, not a padded list.</p></details>
+      <details><summary>Will you contact suppliers for me?</summary><p>Not in the standard report, so your request stays private until you choose to send it. If you want us to collect and compare quotes, ask and we'll scope it.</p></details>
+      <details><summary>Is my request kept confidential?</summary><p>Yes. It's used only for your research and never shared with suppliers or other clients. We're happy to sign your NDA.</p></details>
+      <details><summary>Where are the producers from?</summary><p>Wherever the best fit is. For Indian buyers we start with Indian producers and importers; for international buyers we cover India, China, Europe and the US unless you say otherwise.</p></details>
     </div>
   </div>
 </section>
@@ -402,18 +481,17 @@
 
 <footer>
   <div class="wrap">
-    <span>Selqentra</span>
+    <span>Selqentra. Sourcing research for raw material buyers.</span>
     <span><a href="mailto:selqentra@gmail.com">selqentra@gmail.com</a><a id="wa-foot" href="https://wa.me/918171725437">WhatsApp</a></span>
   </div>
 </footer>
 
 <script>
   (function(){
-    var msg = encodeURIComponent("Hi Selqentra, I need a supplier shortlist for: ");
+    var msg = encodeURIComponent("Hi Selqentra, I'd like a sourcing report for: ");
     ["wa","wa-foot"].forEach(function(id){ var a=document.getElementById(id); if(a) a.href += "?text=" + msg; });
     var next = document.getElementById("f-next");
     if (next) next.value = location.origin + "/thanks.html";
-
     var prices = {
       inr:{one:"₹2,999","one-was":"₹4,999",three:"₹7,499","three-was":"₹14,997",pay:"UPI"},
       usd:{one:"$49","one-was":"$79",three:"$129","three-was":"$237",pay:"PayPal"}
