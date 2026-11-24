@@ -13,15 +13,8 @@ import { useReveal } from './hooks/useReveal';
 import { useReducedMotion } from './hooks/useReducedMotion';
 import { links } from './config';
 
-function detectWebGL(): boolean {
-  try { const c = document.createElement('canvas'); return !!(c.getContext('webgl2') || c.getContext('webgl')); } catch { return false; }
-}
-
 export default function App() {
   const reduced = useReducedMotion();
-  const [webgl, setWebgl] = useState<boolean>(true);
-  useEffect(() => { setWebgl(detectWebGL()); }, []);
-  const live = !reduced && webgl;
   const [showSticky, setShowSticky] = useState(false);
   useLenis(!reduced);
   const root = useRef<HTMLDivElement>(null);
@@ -38,7 +31,7 @@ export default function App() {
     <div ref={root}>
       <Nav />
       <main id="main">
-        <Hero ref={hero} live={live} />
+        <Hero ref={hero} />
         <Why ref={whyR} />
         <section className="walksec" aria-labelledby="h-walk">
           <div className="wrap center">
