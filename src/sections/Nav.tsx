@@ -9,9 +9,8 @@ export function Nav() {
         </a>
         <div className="links">
           <a href="#why">Why it matters</a>
-          <a href="#sample">Sample landscape</a>
-          <a href="#receive">Outputs</a>
-          <a href="#system">Method</a>
+          <a href="#sample">Sample</a>
+                    <a href="#system">Method</a>
           <a className="btn primary sm" href={links.demo()}>Book a free pilot</a>
         </div>
       </div>

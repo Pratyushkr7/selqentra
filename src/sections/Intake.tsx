@@ -3,7 +3,6 @@ import { config, links, isConfigured } from '../config';
 
 interface Form { email: string; company: string; product: string; cas: string; application: string; grade: string; properties: string; volume: string; destination: string; current: string; notes: string }
 const empty: Form = { email: '', company: '', product: '', cas: '', application: '', grade: '', properties: '', volume: '', destination: '', current: 'Not sure', notes: '' };
-const CURRENT = ['Not sure', 'A manufacturer', 'A distributor', 'A trader', 'Several of these'];
 
 export function Intake() {
   const [f, setF] = useState<Form>(empty);
@@ -25,10 +24,8 @@ export function Intake() {
     `CAS number: ${f.cas || '—'}`,
     `Application / purpose: ${f.application || '—'}`,
     `Grade / form: ${f.grade || '—'}`,
-    `Key properties or specification: ${f.properties || '—'}`,
     `Annual volume: ${f.volume || '—'}`,
     `Delivery location: ${f.destination || '—'}`,
-    `Current source is: ${f.current}`,
     f.notes ? `Notes: ${f.notes}` : '',
     '',
     'SDS / TDS attached to this email where available.',
@@ -46,20 +43,18 @@ export function Intake() {
     <div className="intake" id="brief">
       {!sent ? (
         <form onSubmit={submit} noValidate aria-describedby="intake-help">
-          <p id="intake-help" className="ihelp">The product brief. It becomes an email in your own mail client. Nothing is stored here, and you attach the SDS or TDS yourself before sending.</p>
+          <p id="intake-help" className="ihelp">Fill this in and it opens as an email from your own account. Nothing is stored on this site.</p>
           <div className="grid2">
             <label>Work email<input type="email" required value={f.email} onChange={set('email')} aria-invalid={touched && !emailOk} autoComplete="email" /></label>
             <label>Company<input type="text" required value={f.company} onChange={set('company')} aria-invalid={touched && !f.company.trim()} autoComplete="organization" /></label>
             <label>Product name<input type="text" required placeholder="e.g. Sodium gluconate" value={f.product} onChange={set('product')} aria-invalid={touched && !f.product.trim()} /></label>
             <label>CAS number <span className="opt">if known</span><input type="text" placeholder="e.g. 527-07-1" value={f.cas} onChange={set('cas')} /></label>
-            <label>Application / purpose<input type="text" required placeholder="e.g. concrete admixture, set retarder" value={f.application} onChange={set('application')} aria-invalid={touched && !f.application.trim()} /></label>
-            <label>Grade / form<input type="text" placeholder="e.g. technical, 98% min., powder" value={f.grade} onChange={set('grade')} /></label>
+            <label>Application / purpose<input type="text" required placeholder="e.g. paint, food, adhesive" value={f.application} onChange={set('application')} aria-invalid={touched && !f.application.trim()} /></label>
+            <label>Grade / form<input type="text" placeholder="e.g. food grade, powder" value={f.grade} onChange={set('grade')} /></label>
             <label>Annual volume<input type="text" placeholder="e.g. 120 t" value={f.volume} onChange={set('volume')} /></label>
             <label>Delivery location<input type="text" required placeholder="City, country" value={f.destination} onChange={set('destination')} aria-invalid={touched && !f.destination.trim()} /></label>
-            <label>Key properties or spec<input type="text" placeholder="The two or three that matter" value={f.properties} onChange={set('properties')} /></label>
-            <label>Your current source is<select value={f.current} onChange={set('current')}>{CURRENT.map((c) => <option key={c}>{c}</option>)}</select></label>
           </div>
-          <label>Anything else <span className="opt">optional</span><textarea rows={2} placeholder="Geographies to include or avoid, certifications required, what would make this useful" value={f.notes} onChange={set('notes')} /></label>
+          <label>Anything else <span className="opt">optional</span><textarea rows={2} placeholder="Current supplier type, certifications needed, regions to include or avoid" value={f.notes} onChange={set('notes')} /></label>
           {touched && !valid && <p className="ierr" role="alert">Fill the five required fields (email, company, product, application and delivery location) so the landscape can be scoped.</p>}
           <div className="ctas" style={{ marginTop: 18 }}>
             <button type="submit" className="btn primary">Compose the brief<span className="arr" aria-hidden="true">→</span></button>

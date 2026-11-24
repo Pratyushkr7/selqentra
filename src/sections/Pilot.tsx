@@ -6,7 +6,7 @@ export const Pilot = forwardRef<HTMLElement>(function Pilot(_, ref) {
   return (
     <section id="pilot" ref={ref} aria-labelledby="h-pilot">
       <div className="wrap">
-        <div className="label reveal">05 · The free pilot</div>
+        <div className="label reveal">04 · Free pilot</div>
         <h2 id="h-pilot" className="h-l reveal">Test it on a material you actually buy.</h2>
         <p className="lede reveal" style={{ marginTop: 22 }}>One material, fully worked, at no cost. You judge the map against what you already know. If it shows you a saving or a second source you didn't have, we talk about the rest.</p>
         <div className="commercial reveal">
@@ -20,7 +20,7 @@ export const Pilot = forwardRef<HTMLElement>(function Pilot(_, ref) {
               <Button href={links.demo()}>Book a free pilot</Button>
               <Button href={links.question()} variant="ghost">Ask a question first</Button>
             </div>
-            <p className="note">No outreach to suppliers on your behalf. No contact lists. Where public evidence does not support a call, the record says so.</p>
+            <p className="note">Your request stays confidential. Nothing goes to any supplier until you decide.</p>
           </div>
         </div>
       </div>

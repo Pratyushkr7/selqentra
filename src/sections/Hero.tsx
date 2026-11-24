@@ -14,10 +14,10 @@ export const Hero = forwardRef<HTMLElement, { live: boolean }>(function Hero({ l
         )}
         <div className="label reveal">Supplier discovery · chemicals and raw materials</div>
         <h1 id="h-hero" className="reveal">Know who actually<br />makes it.</h1>
-        <p className="lede reveal">Selqentra finds the companies that can supply your raw material and tells you which ones make it, which only resell it, and what the evidence says. You negotiate with the source, qualify a second supplier and stop paying for a margin you can't see.</p>
+        <p className="lede reveal">We find the companies that can supply your raw material and show you which ones make it, which only resell it, and the evidence for each. You negotiate with the source and always have a second option.</p>
         <div className="ctas reveal">
           <Button href={links.demo()}>Book a free pilot</Button>
-          <Button href={links.sample()} variant="ghost">See a sample landscape</Button>
+          <Button href={links.sample()} variant="ghost">See a sample</Button>
         </div>
         <p className="proof reveal"><span><b>Savings</b></span><span><b>Second sources</b></span><span><b>Manufacturer / distributor / trader</b></span><span>Plant-level evidence</span></p>
       </div>

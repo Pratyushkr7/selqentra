@@ -36,7 +36,7 @@ export const Close = forwardRef<HTMLElement>(function Close(_, ref) {
   return (
     <section id="contact" className="close" ref={ref} aria-labelledby="h-close">
       <div className="wrap center">
-      <div className="label reveal">07 · Start</div>
+      <div className="label reveal">05 · Start</div>
       <h2 id="h-close" className="h-xl reveal">Before your next sourcing decision,<br />see the landscape.</h2>
       <p className="lede reveal" style={{ marginTop: 24 }}>Send one material. Get back who actually makes it.</p>
       <div className="startgrid reveal">
@@ -44,10 +44,10 @@ export const Close = forwardRef<HTMLElement>(function Close(_, ref) {
         <aside className="next" aria-label="What happens after you send the brief">
           <h3 className="label">What happens next</h3>
           <ol>
-            <li><b>You send the brief.</b> It goes from your own mail client, so nothing is stored here. Attach the SDS or TDS if you have one.</li>
-            <li><b>A short scoping reply within one working day.</b> Any questions about grade, application or geography, and a date for the landscape.</li>
-            <li><b>The landscape arrives.</b> Verified Source Map, Trade Flow Summary and Sourcing Recommendation for that material.</li>
-            <li><b>A short call.</b> We walk the map together; further work is scoped individually.</li>
+            <li><b>You send the brief.</b> It goes from your own email, with the SDS or TDS attached if you have one.</li>
+            <li><b>We reply within one working day</b> to confirm scope and a delivery date.</li>
+            <li><b>You get the report:</b> who makes it, who resells it, where it ships from, and who to approach first.</li>
+            <li><b>A short call</b> to walk through it together.</li>
           </ol>
           <div className="contact" id="contact-details">
             <span className="label">Direct</span>
@@ -59,7 +59,7 @@ export const Close = forwardRef<HTMLElement>(function Close(_, ref) {
       </div>
       <footer>
         <span>© {new Date().getFullYear()} Selqentra · Supplier discovery for raw materials</span>
-        <span>No claims about real companies appear on this page. Sample entities and flows are fictional or illustrative.</span>
+        <span>Sample companies and figures on this page are illustrative.</span>
       </footer>
       </div>
     </section>

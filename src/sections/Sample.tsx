@@ -18,10 +18,10 @@ export const Sample = forwardRef<HTMLElement>(function Sample(_, ref) {
   return (
     <section id="sample" ref={ref} aria-labelledby="h-sample">
       <div className="wrap">
-      <div className="label reveal">03 · Sample landscape</div>
-      <h2 id="h-sample" className="h-l reveal">Inspect a landscape before you ask for one.</h2>
-      <p className="lede reveal" style={{ marginTop: 22 }}>Six sources in the structure of the Verified Source Map. Open a row to see the evidence trail behind the classification: dated, typed, and honest about what it does and does not prove.</p>
-      <div className="demo-tag reveal" role="note"><i aria-hidden="true" />Demonstration landscape · fictional entities, representative structure</div>
+      <div className="label reveal">02 · Sample</div>
+      <h2 id="h-sample" className="h-l reveal">See what you get before you ask for it.</h2>
+      <p className="lede reveal" style={{ marginTop: 22 }}>Six companies in the format of a real report. Open any row to see the evidence behind its label, and what each one is good for.</p>
+      <div className="demo-tag reveal" role="note"><i aria-hidden="true" />Example layout · company names are fictional</div>
 
       <div className="filters reveal" role="group" aria-label="Filter records">
         {filters.map((x) => { const n = sample.filter(x.test).length; return (
@@ -47,7 +47,7 @@ export const Sample = forwardRef<HTMLElement>(function Sample(_, ref) {
       </div>
       {open && (() => { const r = sample.find((x) => x.id === open)!; return (
         <div className="trailbox" id={`ev-${r.id}`} role="region" aria-label={`Evidence trail for ${r.company}`}>
-          <div className="th"><b>{r.company}</b><span className="mono">{r.id} · evidence trail · fictional</span></div>
+          <div className="th"><b>{r.company}</b><span className="mono">{r.id} · evidence trail</span></div>
           <div className="trail" role="list">
             {r.trail.map((e, k) => (
               <div key={k} className={`ev ${e.type === 'supports' ? 'sup' : e.type === 'contradicts' ? 'con' : ''}`} role="listitem">
@@ -58,7 +58,6 @@ export const Sample = forwardRef<HTMLElement>(function Sample(_, ref) {
           </div>
         </div>
       ); })()}
-      <p className="tkeys">Keyboard: ↑ ↓ move between sources · Enter opens the evidence trail · Tab reaches the filters</p>
       </div>
     </section>
   );
@@ -69,7 +68,7 @@ function FragmentRow({ r, i, isOpen, onKey, toggle, rowsRef }: { r: Rec; i: numb
   return (
     <>
       <tr className={`rec ${isOpen ? 'sel' : ''}`} tabIndex={0} aria-expanded={isOpen} aria-controls={`ev-${r.id}`} onClick={toggle} onKeyDown={(e) => onKey(e, i, r.id)} ref={(el) => { rowsRef.current[i] = el; }}>
-        <td><div className="co">{r.company}<small>{r.id} · {r.country} · fictional</small></div></td>
+        <td><div className="co">{r.company}<small>{r.id} · {r.country}</small></div></td>
         <td className="m hide-c">{r.country}</td>
         <td className="m">{r.claimed}</td>
         <td><span className={`tag ${r.verified === 'Manufacturer' || r.verified === 'Distributor' ? 'ok' : r.verified === 'Unsupported' ? 'bad' : r.verified === 'Trader' ? '' : 'rev'}`}>{r.verified}</span></td>

@@ -9,9 +9,9 @@ export const System = forwardRef<HTMLElement, { active: boolean }>(function Syst
   return (
     <section id="system" ref={ref} aria-labelledby="h-system">
       <div className="wrap">
-        <div className="label reveal">02 · The verification system</div>
+        <div className="label reveal">03 · How every name is checked</div>
         <h2 id="h-system" className="h-l reveal">Every supplier on your list has to survive the evidence test.</h2>
-        <p className="lede reveal" style={{ marginTop: 22 }}>Six questions, asked in order, each answered from a public source or marked unresolved. A company that fails early is not researched further; that time goes into the ones you could actually buy from.</p>
+        <p className="lede reveal" style={{ marginTop: 22 }}>Six questions, in order. Each is answered from a public source or marked unresolved, never guessed.</p>
         <div className="evgrid">
           <EvidenceDiagram stepsRef={stepsRef} active={active} onStep={onStep} />
           <div className="steps" ref={stepsRef}>
