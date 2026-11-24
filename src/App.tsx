@@ -6,9 +6,8 @@ import { Problem } from './sections/Problem';
 import { Why } from './sections/Why';
 import { System } from './sections/System';
 import { Sample } from './sections/Sample';
-import { Receive } from './sections/Receive';
 import { Pilot } from './sections/Pilot';
-import { Fit, Close } from './sections/Rest';
+import { Close } from './sections/Rest';
 import { useLenis } from './hooks/useLenis';
 import { useReveal } from './hooks/useReveal';
 import { useReducedMotion } from './hooks/useReducedMotion';
@@ -27,7 +26,7 @@ export default function App() {
   useLenis(!reduced);
   const root = useRef<HTMLDivElement>(null);
   useReveal(root);
-  const hero = useRef<HTMLElement>(null), problem = useRef<HTMLElement>(null), sample = useRef<HTMLElement>(null), receive = useRef<HTMLElement>(null), pilot = useRef<HTMLElement>(null), fitR = useRef<HTMLElement>(null), closeR = useRef<HTMLElement>(null), whyR = useRef<HTMLElement>(null), systemR = useRef<HTMLElement>(null);
+  const hero = useRef<HTMLElement>(null), problem = useRef<HTMLElement>(null), sample = useRef<HTMLElement>(null), pilot = useRef<HTMLElement>(null), closeR = useRef<HTMLElement>(null), whyR = useRef<HTMLElement>(null), systemR = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const el = hero.current; if (!el) return;
@@ -52,14 +51,12 @@ export default function App() {
         <Problem ref={problem} />
         <System ref={systemR} active={!reduced} />
         <Sample ref={sample} />
-        <Receive ref={receive} />
         <Pilot ref={pilot} />
-        <Fit ref={fitR} />
         <Close ref={closeR} />
       </main>
       <div className={`sticky-cta ${showSticky ? 'show' : ''}`} aria-hidden={!showSticky}>
         <a className="btn primary sm" href={links.demo()}>Book a free pilot</a>
-        <a className="btn ghost sm" href={links.sample()}>Sample</a>
+        <a className="btn ghost sm" href={links.sample()}>See a sample</a>
       </div>
     </div>
   );
