@@ -53,7 +53,7 @@ export const sample: Rec[] = [
   },
   {
     id: 'R-063', company: 'Arundel Polymer Works Pvt Ltd', country: 'India', claimed: 'Manufacturer', verified: 'Duplicate', status: 'review',
-    product: 'Exact grade match', evidence: 'Same plant as R-019', confidence: 0.79, risk: 'Duplicate legal entity', action: 'Same plant as R-019 — one source, not two. Approach once.',
+    product: 'Exact grade match', evidence: 'Same plant as R-019', confidence: 0.79, risk: 'Duplicate legal entity', action: 'Same plant as R-019: one source, not two. Approach once.',
     trail: [
       { date: '2026-05', kind: 'Registry', note: 'Shares registered address and two directors with "Arundel Polymers Ltd" (record R-019).', type: 'supports' },
       { date: '2026-03', kind: 'Own domain', note: 'Both entities resolve to the same website and the same SDS documents.', type: 'supports' },
