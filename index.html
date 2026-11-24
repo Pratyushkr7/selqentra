@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#111417">
-<title>Selqentra | Find the margin in your raw material prices</title>
-<meta name="description" content="Selqentra traces who actually makes the raw materials you buy and who sits in between, so you can negotiate with the source, keep your supplier honest and cut supply risk. Reports in 72 hours, paid after delivery.">
-<meta property="og:title" content="Selqentra | Find the margin in your raw material prices">
-<meta property="og:description" content="Who actually makes what you buy, who sits in between, and the proof. Reports in 72 hours, paid after delivery.">
+<title>Selqentra | Raw material market research for buyers and suppliers</title>
+<meta name="description" content="Selqentra maps raw material markets from both sides. Buyers find who actually makes what they buy and a real alternative. Suppliers find the manufacturers who should be buying from them.">
+<meta property="og:title" content="Selqentra | Know who makes it. Know who buys it.">
+<meta property="og:description" content="Raw material market research for both sides of the deal: producers and alternatives for buyers, qualified buyers for suppliers.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="/og.png">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' rx='2' fill='%23111417'/%3E%3Cg fill='%23F2F3EF'%3E%3Crect x='3' y='3' width='2.6' height='2.6'/%3E%3Crect x='6.7' y='3' width='2.6' height='2.6'/%3E%3Crect x='10.4' y='3' width='2.6' height='2.6'/%3E%3Crect x='3' y='6.7' width='2.6' height='2.6'/%3E%3Crect x='10.4' y='6.7' width='2.6' height='2.6'/%3E%3Crect x='3' y='10.4' width='2.6' height='2.6'/%3E%3Crect x='6.7' y='10.4' width='2.6' height='2.6'/%3E%3Crect x='10.4' y='10.4' width='2.6' height='2.6'/%3E%3C/g%3E%3Crect x='6.7' y='6.7' width='2.6' height='2.6' fill='%23F25A0C'/%3E%3C/svg%3E">
@@ -101,6 +101,19 @@
   .record-note{background:var(--paper);padding:0 0 30px;font-size:14.5px;color:var(--slate)}
   .record-note .wrap{border-top:1px solid var(--rule);padding-top:18px}
 
+  /* sides */
+  .side-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:44px}
+  .side{background:var(--paper);border:1px solid var(--rule);border-radius:6px;padding:36px;display:flex;flex-direction:column;scroll-margin-top:84px}
+  .side + .side{background:#E9EBE6}
+  .side-tag{font-family:var(--head);font-weight:500;font-size:15px;color:var(--signal-ink)}
+  .side + .side .side-tag{color:var(--ink)}
+  .side h3{font-family:var(--head);font-weight:600;font-size:29px;line-height:1.12;margin-top:10px}
+  .side > p:not(.side-tag){color:var(--slate);margin-top:14px}
+  .side ul{list-style:none;padding:0;margin:24px 0 30px;border-top:1px solid var(--rule)}
+  .side li{padding:12px 0;border-bottom:1px solid var(--rule);font-size:16px}
+  .side li b{font-weight:600}
+  .side .btn{margin-top:auto;align-self:flex-start}
+
   /* savings */
   .levers{border-top:1px solid var(--ink)}
   .lever{display:grid;grid-template-columns:1fr 1.35fr;gap:40px;padding:28px 0;border-bottom:1px solid var(--rule)}
@@ -164,6 +177,9 @@
   .plan .for{color:var(--mute);font-size:15px;margin-top:8px}
   .plan ul{list-style:none;padding:0;margin:26px 0 30px;border-top:1px solid var(--rule-dark)}
   .plan li{padding:11px 0;border-bottom:1px solid var(--rule-dark);font-size:16px;color:#DADDE0}
+  .terms-list{list-style:none;padding:0;margin:32px 0 34px;border-top:1px solid var(--rule-dark)}
+  .terms-list li{padding:18px 0;border-bottom:1px solid var(--rule-dark);color:#C9CDD1}
+  .terms-list b{color:var(--page);font-weight:600;display:block;font-family:var(--head);font-size:19px;margin-bottom:4px}
   .terms-box{margin-top:24px;border-left:3px solid var(--signal);padding:4px 0 4px 20px;color:#C9CDD1;max-width:52em}
   .terms-box b{color:var(--page);font-weight:600}
 
@@ -212,6 +228,7 @@
     .lever{grid-template-columns:1fr;gap:8px}
     .steps{grid-template-columns:1fr;gap:32px}
     .plans{grid-template-columns:1fr}
+    .side-grid{grid-template-columns:1fr}
   }
   @media (max-width:720px){
     .wrap{padding:0 20px}
@@ -237,6 +254,8 @@
     .ctable th,.ctable td{border:0;padding:4px 0}
     .ctable td::before{content:attr(data-k);display:block;font-weight:600;font-size:13px;color:var(--slate);margin-top:8px}
     form{grid-template-columns:1fr}
+    .side{padding:26px}
+    .side h3{font-size:25px}
     .cando{grid-template-columns:1fr}
     .cando li:nth-child(odd){padding-right:0}
     .chain li{grid-template-columns:96px 1fr}
@@ -251,10 +270,10 @@
   <div class="wrap">
     <a class="brand" href="#" aria-label="Selqentra home"><span class="mark" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>Selqentra</a>
     <nav aria-label="Primary">
-      <a href="#savings">Savings</a>
+      <a href="#buyers">For buyers</a>
+      <a href="#suppliers">For suppliers</a>
       <a href="#report">Sample report</a>
-      <a href="#pricing">Pricing</a>
-      <a class="cta" href="#request">Request a report</a>
+      <a class="cta" href="#request">Talk to us</a>
     </nav>
   </div>
 </header>
@@ -263,13 +282,13 @@
 <div class="hero">
   <div class="wrap">
     <div>
-      <h1>Most raw material prices carry a margin nobody told you about.</h1>
-      <p class="lede">Selqentra traces who actually makes the materials you buy and who sits in between. You get the producers, the resellers and the evidence for each, so your next negotiation starts from the source.</p>
+      <h1>Know who makes it. Know who buys it.</h1>
+      <p class="lede">Selqentra maps raw material markets from both sides of the deal. Buyers see who actually makes what they buy and what sits in between. Suppliers see which manufacturers use their material and who supplies them today.</p>
       <div class="ctas">
-        <a class="btn primary" href="#request">Request a sourcing report</a>
-        <a class="btn line" href="#report">See a sample report</a>
+        <a class="btn primary" href="#buyers">I buy raw materials</a>
+        <a class="btn line" href="#suppliers">I sell raw materials</a>
       </div>
-      <p class="terms"><b>72 hours. Paid after delivery.</b> ₹2,999 or $49 per material.</p>
+      <p class="terms"><b>Reports in 72 hours. Paid after delivery.</b> Every engagement scoped to your material and market.</p>
     </div>
 
     <figure class="build" aria-labelledby="build-t">
@@ -299,10 +318,40 @@
   <div class="wrap">Work done for manufacturers in personal care, coatings and inks, paper, composites, pharma, food and fragrance. Materials include titanium dioxide, epoxy resins, maleic anhydride, triethanolamine, sodium hyaluronate, citric acid and peppermint oil.</div>
 </div>
 
+<section id="sides" class="sides">
+  <div class="wrap">
+    <h2 class="title">One market map. Two ways to make money from it.</h2>
+    <div class="side-grid">
+      <article class="side" id="buyers">
+        <p class="side-tag">For buyers and procurement teams</p>
+        <h3>Pay less, and never depend on one source.</h3>
+        <p>We trace who actually produces the material you buy, which companies only resell it, and the evidence for each. You get the producers to negotiate with and a verified alternative to fall back on.</p>
+        <ul>
+          <li><b>Savings</b> by buying closer to the plant</li>
+          <li><b>Alternatives</b> qualified against your spec and certifications</li>
+          <li><b>Supply risk</b> mapped before a shortage finds you</li>
+        </ul>
+        <a class="btn primary" href="#request" data-role="buyer">Find my producers</a>
+      </article>
+      <article class="side" id="suppliers">
+        <p class="side-tag">For producers and distributors</p>
+        <h3>Find the buyers who should already be yours.</h3>
+        <p>We map the manufacturers that use your material in the markets you want to win, what they buy today and from whom, and the right person to reach. Your sales team starts with qualified demand, not a cold list.</p>
+        <ul>
+          <li><b>Buyers</b> who use your material, by country and industry</li>
+          <li><b>Current suppliers</b> you would be replacing, from shipment records</li>
+          <li><b>Contact routes</b> to the people who decide</li>
+        </ul>
+        <a class="btn dark" href="#request" data-role="supplier">Find my buyers</a>
+      </article>
+    </div>
+  </div>
+</section>
+
 <section id="savings">
   <div class="wrap split">
     <div>
-      <p class="kicker">Where the savings come from</p>
+      <p class="kicker">For buyers: where the savings come from</p>
       <h2 class="title">A list of suppliers is the means. A better price is the point.</h2>
     </div>
     <div class="levers">
@@ -375,41 +424,20 @@
   </div>
 </section>
 
-<section id="pricing" class="pricing">
-  <div class="wrap">
-    <h2 class="title">One price per material.</h2>
-    <p class="intro">If it improves your price by 1% on a single ₹3 lakh or $5,000 order, it has paid for itself.</p>
-    <div class="cur" role="group" aria-label="Currency">
-      <button type="button" data-cur="inr" aria-pressed="true">India, INR</button>
-      <button type="button" data-cur="usd" aria-pressed="false">International, USD</button>
+<section id="engage" class="pricing">
+  <div class="wrap split">
+    <div>
+      <h2 class="title">Scoped to your material. Paid after delivery.</h2>
     </div>
-    <div class="plans">
-      <div class="plan main">
-        <h3>One material</h3>
-        <div class="price"><span class="now num" data-p="one">₹2,999</span><span class="was num" data-p="one-was">₹4,999</span></div>
-        <p class="for">Launch price</p>
-        <ul>
-          <li>Usually 8 to 12 companies, each classified</li>
-          <li>Evidence, location and certifications for every name</li>
-          <li>Where you can cut a layer, flagged</li>
-          <li>Quote request email for your spec</li>
-          <li>Delivered in 72 hours</li>
-        </ul>
-        <a class="btn primary" href="#request">Request a report</a>
-      </div>
-      <div class="plan">
-        <h3>Three materials</h3>
-        <div class="price"><span class="now num" data-p="three">₹7,499</span><span class="was num" data-p="three-was">₹14,997</span></div>
-        <p class="for">Or the key inputs of one formula</p>
-        <ul>
-          <li>Everything in the single report, three times</li>
-          <li>Producers who can supply several of your inputs, flagged</li>
-          <li>Delivered in 5 working days</li>
-        </ul>
-        <a class="btn line" href="#request">Request three</a>
-      </div>
+    <div>
+      <p class="intro">No two materials or markets take the same work, so we don't sell off a price list. Tell us what you buy or sell, and we come back within 12 hours with the scope, what to expect and the fee.</p>
+      <ol class="terms-list">
+        <li><b>We check before we start.</b> You know how many verified producers or buyers to expect before you commit. Some niche materials have only a handful worldwide, and we say so.</li>
+        <li><b>You see the work first.</b> You pay within 3 days of receiving the report, not before.</li>
+        <li><b>Short of the promise, no fee.</b> If we deliver fewer verified names than we said, you pay nothing.</li>
+      </ol>
+      <a class="btn primary" href="#request">Get a scope and fee</a>
     </div>
-    <div class="terms-box"><p><b>Paid after delivery.</b> Before we start, we check your material and tell you how many verified producers to expect. Some niche materials have only a handful worldwide, and we say so upfront. You pay by <span data-pay>UPI</span> within 3 days of delivery, and nothing at all if we deliver fewer than we said.</p></div>
   </div>
 </section>
 
@@ -420,7 +448,7 @@
     </div>
     <div class="letter">
       <p>Since mid-2025 I've been finding producers of chemicals, polymers, food ingredients and actives for manufacturers who need options they can trust. The pattern repeats: the first page of any directory is mostly resellers, and the plants that make the material rarely advertise.</p>
-      <p>Selqentra is that same research, sold directly to the buyers who pay the price. I don't take commission from suppliers, nobody pays to appear in your report, and your request is never shared.</p>
+      <p>Selqentra puts that research to work for both sides. Buyers use it to pay less and stop depending on one source. Producers use it to find the manufacturers who should be buying from them. Either way, I take no commission from the other side, nobody pays to appear in a report, and your request is never shared.</p>
       <p class="sign"><b>Pratyush</b>Founder, Selqentra</p>
       <ul class="cando">
         <li>Specialty and industrial chemicals</li>
@@ -438,19 +466,19 @@
 
 <section id="request" class="request">
   <div class="wrap">
-    <h2 class="title">Tell us what you buy.</h2>
-    <p class="intro">We reply within 12 hours to confirm scope and how many producers to expect. Nothing to pay until you have the report.</p>
+    <h2 class="title">Tell us what you buy or sell.</h2>
+    <p class="intro">We reply within 12 hours with the scope, what to expect and the fee. Nothing to pay until you have the report.</p>
     <form id="req" method="POST" action="https://formsubmit.co/selqentra@gmail.com">
       <div><label for="f-name">Your name</label><input id="f-name" name="name" required autocomplete="name"></div>
       <div><label for="f-email">Work email</label><input id="f-email" name="email" type="email" required autocomplete="email"></div>
       <div><label for="f-co">Company <span class="opt">(optional)</span></label><input id="f-co" name="company" autocomplete="organization"></div>
       <div><label for="f-wa">WhatsApp <span class="opt">(optional)</span></label><input id="f-wa" name="whatsapp" type="tel" autocomplete="tel"></div>
-      <div class="full"><label for="f-need">Material and spec</label><textarea id="f-need" name="need" required placeholder="e.g. Rutile titanium dioxide for a paint line, 2 MT a month. We buy from a trader today and want to know who makes it."></textarea></div>
+      <div class="full"><label for="f-need">Material, spec and market</label><textarea id="f-need" name="need" required placeholder="Buying: rutile titanium dioxide for a paint line, 2 MT a month, we buy from a trader today. Selling: we make citric acid and want buyers in Southeast Asia."></textarea></div>
       <div><label for="f-qty">Quantity <span class="opt">(rough is fine)</span></label><input id="f-qty" name="quantity"></div>
       <div><label for="f-dest">Delivery country or city</label><input id="f-dest" name="destination"></div>
-      <div><label for="f-plan">Plan</label><select id="f-plan" name="plan"><option>One material</option><option>Three materials</option><option>Not sure yet</option></select></div>
+      <div><label for="f-plan">I want to</label><select id="f-plan" name="goal"><option value="buyer">Find producers or cut cost (I buy)</option><option value="supplier">Find buyers (I sell)</option><option value="both">Both, or not sure</option></select></div>
       <div><label for="f-when">Needed by <span class="opt">(optional)</span></label><input id="f-when" name="deadline"></div>
-      <input type="hidden" name="_subject" value="New sourcing report request">
+      <input type="hidden" name="_subject" value="New Selqentra enquiry">
       <input type="hidden" name="_template" value="table">
       <input type="hidden" name="_next" id="f-next" value="/thanks.html">
       <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
@@ -469,7 +497,8 @@
     </div>
     <div class="faq-list">
       <details><summary>How much will I save?</summary><p>It depends on how many layers sit between you and the plant today. We don't promise a percentage because we haven't seen your quotes. What we do promise is that you'll know who makes the material, so the next negotiation starts from facts.</p></details>
-      <details><summary>Do you give prices?</summary><p>Producers quote against a specific request, so prices come from the quote request you send. The report includes any public price signals we find, and the email asks for price, MOQ and lead time in one go.</p></details>
+      <details><summary>What does it cost?</summary><p>It depends on the material, the markets and how deep you want to go. We send the scope and fee before any work starts, and you pay only after you have the report.</p></details>
+      <details><summary>How do you find buyers for suppliers?</summary><p>From customs shipment records, product and regulatory filings, and the manufacturers' own sites. We identify who uses the material, at what scale and from whom they buy today, then the right person to contact. We never share one client's request with another.</p></details>
       <details><summary>What if my material is niche?</summary><p>Some materials have three or four real producers worldwide. We check before we start and tell you what to expect, so you pay for a complete picture, not a padded list.</p></details>
       <details><summary>Will you contact suppliers for me?</summary><p>Not in the standard report, so your request stays private until you choose to send it. If you want us to collect and compare quotes, ask and we'll scope it.</p></details>
       <details><summary>Is my request kept confidential?</summary><p>Yes. It's used only for your research and never shared with suppliers or other clients. We're happy to sign your NDA.</p></details>
@@ -488,24 +517,13 @@
 
 <script>
   (function(){
-    var msg = encodeURIComponent("Hi Selqentra, I'd like a sourcing report for: ");
+    var msg = encodeURIComponent("Hi Selqentra, I'd like to talk about: ");
     ["wa","wa-foot"].forEach(function(id){ var a=document.getElementById(id); if(a) a.href += "?text=" + msg; });
     var next = document.getElementById("f-next");
     if (next) next.value = location.origin + "/thanks.html";
-    var prices = {
-      inr:{one:"₹2,999","one-was":"₹4,999",three:"₹7,499","three-was":"₹14,997",pay:"UPI"},
-      usd:{one:"$49","one-was":"$79",three:"$129","three-was":"$237",pay:"PayPal"}
-    };
-    function setCur(c){
-      document.querySelectorAll(".cur button").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.cur===c)); });
-      document.querySelectorAll("[data-p]").forEach(function(e){ e.textContent = prices[c][e.dataset.p]; });
-      document.querySelector("[data-pay]").textContent = prices[c].pay;
-    }
-    document.querySelectorAll(".cur button").forEach(function(b){ b.addEventListener("click", function(){ setCur(b.dataset.cur); }); });
-    try {
-      var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "";
-      setCur(tz==="Asia/Calcutta"||tz==="Asia/Kolkata" ? "inr" : "usd");
-    } catch(e){ setCur("inr"); }
+    document.querySelectorAll("[data-role]").forEach(function(a){
+      a.addEventListener("click", function(){ var s=document.getElementById("f-plan"); if(s) s.value=a.dataset.role; });
+    });
   })();
 </script>
 </body>
