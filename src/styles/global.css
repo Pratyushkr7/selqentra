@@ -264,8 +264,8 @@ footer{margin-top:64px;padding:28px 0 110px;border-top:1px solid var(--rule-2);d
 
 /* ---- walkthrough ---- */
 .walksec{padding-bottom:0}
-.walk{position:relative;height:calc(5 * 82vh + 40vh);margin-top:36px}
-.walk-sticky{position:sticky;top:70px}
+.walk{position:relative;margin-top:36px}
+.walk-sticky{position:relative}
 .module{border:1px solid var(--rule);border-radius:8px;background:var(--charcoal);overflow:hidden;position:relative}
 .module.deep{background:radial-gradient(120% 90% at 70% 30%,#1B0F0A 0%,var(--charcoal) 45%,var(--black) 100%);box-shadow:0 30px 80px -40px rgba(0,0,0,.9),inset 0 1px 0 rgba(243,240,233,.05)}
 .module .mh{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 18px;border-bottom:1px solid var(--rule-2);font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--grey);flex-wrap:wrap}
@@ -301,7 +301,6 @@ footer{margin-top:64px;padding:28px 0 110px;border-top:1px solid var(--rule-2);d
 .stagerail li.on{border-top-color:var(--orange);color:var(--porcelain)}
 .stagerail li.on .mono{color:var(--orange)}
 @media (max-width:899px){
-  .walk{height:calc(5 * 74vh + 30vh)}
   .stagewrap{aspect-ratio:auto;height:min(62vh,520px)}
   .stagewrap svg{height:100%;width:100%}
   .briefcard{width:min(300px,62%);padding:12px 14px;gap:6px}
@@ -391,3 +390,27 @@ footer{margin-top:64px;padding:28px 0 110px;border-top:1px solid var(--rule-2);d
 .whyi h3{font-size:21px;font-weight:500;letter-spacing:-.015em}
 .whyi p{font-size:15px;color:var(--porcelain-2);line-height:1.5}
 .whyi:first-child{border-color:var(--orange-line);background:linear-gradient(160deg,#2E160B 0%,var(--charcoal) 70%)}
+
+/* autoplay controls */
+.replay{margin-left:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--orange);border:1px solid var(--orange-line);border-radius:3px;padding:3px 8px}
+.replay:hover{background:var(--orange-soft)}
+.stagerail li button{display:block;width:100%;text-align:left;font:inherit;letter-spacing:inherit;text-transform:inherit;color:inherit;padding:0;cursor:pointer}
+.step{min-height:0}
+.walksec{padding-bottom:clamp(56px,8vh,96px)}
+
+/* why it rarely gets done */
+.hard{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:22px;border-top:1px solid var(--rule);padding-top:22px}
+.hard b{display:block;font-size:17px;font-weight:500;color:var(--porcelain)}
+.hard p{margin-top:6px;font-size:15px;color:var(--porcelain-2);line-height:1.5}
+@media (max-width:799px){.hard{grid-template-columns:1fr;gap:18px}}
+
+/* sample: inline evidence */
+table.audit tr.rec{cursor:pointer}
+table.audit tr.rec:hover td{background:rgba(242,243,239,.03)}
+tr.trailrow td{padding:0 0 18px;background:var(--charcoal)}
+tr.trailrow .trail{padding:14px 18px 0;border-left:2px solid var(--orange)}
+@media (max-width:699px){
+  table.audit .hide-m{display:none}
+  table.audit{min-width:0!important}
+}
+@media (max-width:699px){table.audit th,table.audit td{padding-left:8px;padding-right:8px}table.audit td:last-child{word-break:break-word}}
