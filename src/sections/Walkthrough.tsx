@@ -173,7 +173,7 @@ export function Walkthrough({ active }: { active: boolean }) {
                 <div className="rrow"><i className="m" /><span>{counts.M} manufacturers</span></div>
                 <div className="rrow"><i className="d" /><span>{counts.D} distributors</span></div>
                 <div className="rrow"><i className="t" /><span>{counts.T} traders</span></div>
-                <p>Approach the {counts.M} manufacturers first — {brief.producers[0] && COUNTRIES[brief.producers[0].cc].name} and {brief.producers[1] && COUNTRIES[brief.producers[1].cc].name} hold the plant-level evidence. Keep the distributors as a channel for trial volumes.</p>
+                <p>Approach the {counts.M} manufacturers first: {brief.producers[0] && COUNTRIES[brief.producers[0].cc].name} and {brief.producers[1] && COUNTRIES[brief.producers[1].cc].name} hold the plant-level evidence. Keep the distributors as a channel for trial volumes.</p>
               </div>
               <div className="stagecard" key={stage}>
                 <div className="label">{stages[stage].n} · {stages[stage].t}</div>

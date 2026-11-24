@@ -5,9 +5,9 @@ export const Receive = forwardRef<HTMLElement>(function Receive(_, ref) {
   return (
     <section id="receive" ref={ref} aria-labelledby="h-receive">
       <div className="wrap">
-        <div className="label reveal">04 — What you receive</div>
+        <div className="label reveal">04 · What you receive</div>
         <h2 id="h-receive" className="h-l reveal">A landscape you can act on, not a directory printout.</h2>
-        <p className="lede reveal" style={{ marginTop: 22 }}>Three outputs, built to shorten the next conversation. Previews use fictional records.</p>
+        <p className="lede reveal" style={{ marginTop: 22 }}>Three outputs, built to shorten the next negotiation. Suppliers get the same structure turned around: the manufacturers that use the material, what they buy and from whom. Previews use fictional records.</p>
         <div className="products" role="list">
           <div className="product ember" role="listitem">
             <div className="ph"><h3>{outputs[0].t}</h3><span className="n">{outputs[0].n}</span></div>

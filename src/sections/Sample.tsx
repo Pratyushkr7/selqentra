@@ -18,10 +18,10 @@ export const Sample = forwardRef<HTMLElement>(function Sample(_, ref) {
   return (
     <section id="sample" ref={ref} aria-labelledby="h-sample">
       <div className="wrap">
-      <div className="label reveal">03 — Sample landscape</div>
+      <div className="label reveal">03 · Sample landscape</div>
       <h2 id="h-sample" className="h-l reveal">Inspect a landscape before you ask for one.</h2>
-      <p className="lede reveal" style={{ marginTop: 22 }}>Six sources in the structure of the Verified Source Map. Open a row to see the evidence trail behind the classification — dated, typed, and honest about what it does and does not prove.</p>
-      <div className="demo-tag reveal" role="note"><i aria-hidden="true" />Demonstration landscape — fictional entities, representative structure</div>
+      <p className="lede reveal" style={{ marginTop: 22 }}>Six sources in the structure of the Verified Source Map. Open a row to see the evidence trail behind the classification: dated, typed, and honest about what it does and does not prove.</p>
+      <div className="demo-tag reveal" role="note"><i aria-hidden="true" />Demonstration landscape · fictional entities, representative structure</div>
 
       <div className="filters reveal" role="group" aria-label="Filter records">
         {filters.map((x) => { const n = sample.filter(x.test).length; return (
@@ -54,7 +54,7 @@ export const Sample = forwardRef<HTMLElement>(function Sample(_, ref) {
                 <span className="d">{e.date}</span><span className="t">{e.kind}</span><span className="x">{e.note} <span className="label" style={{ fontSize: 10, marginLeft: 6 }}>{e.type}</span></span>
               </div>
             ))}
-            <div className="fic">Fictional record. Illustrates structure only — no real company is described.</div>
+            <div className="fic">Fictional record. Illustrates structure only; no real company is described.</div>
           </div>
         </div>
       ); })()}

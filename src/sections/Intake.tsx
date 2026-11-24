@@ -1,8 +1,9 @@
 import { useMemo, useState, type FormEvent } from 'react';
 import { config, links, isConfigured } from '../config';
 
-interface Form { email: string; company: string; product: string; cas: string; application: string; grade: string; properties: string; volume: string; destination: string; current: string; notes: string }
-const empty: Form = { email: '', company: '', product: '', cas: '', application: '', grade: '', properties: '', volume: '', destination: '', current: 'Not sure', notes: '' };
+const GOALS = ['Find producers or cut cost (I buy this)', 'Find buyers (I sell this)'];
+interface Form { email: string; company: string; product: string; cas: string; application: string; grade: string; properties: string; volume: string; destination: string; current: string; goal: string; notes: string }
+const empty: Form = { email: '', company: '', product: '', cas: '', application: '', grade: '', properties: '', volume: '', destination: '', current: 'Not sure', goal: GOALS[0], notes: '' };
 const CURRENT = ['Not sure', 'A manufacturer', 'A distributor', 'A trader', 'Several of these'];
 
 export function Intake() {
@@ -16,7 +17,8 @@ export function Intake() {
   const valid = emailOk && f.company.trim() && f.product.trim() && f.application.trim() && f.destination.trim();
 
   const brief = useMemo(() => [
-    'PRODUCT BRIEF — free pilot',
+    'PRODUCT BRIEF: free pilot',
+    `Goal: ${f.goal}`,
     '',
     `Company: ${f.company || '—'}`,
     `Contact: ${f.email || '—'}`,
@@ -37,7 +39,7 @@ export function Intake() {
   const submit = (e: FormEvent) => {
     e.preventDefault(); setTouched(true);
     if (!valid) return;
-    if (isConfigured()) window.location.href = links.mailto(`Product brief — ${f.product} (${f.company})`, brief);
+    if (isConfigured()) window.location.href = links.mailto(`Product brief: ${f.product} (${f.company})`, brief);
     setSent(true);
   };
   const copy = async () => { try { await navigator.clipboard.writeText(brief); setCopied(true); setTimeout(() => setCopied(false), 1800); } catch { /* text stays selectable below */ } };
@@ -46,7 +48,7 @@ export function Intake() {
     <div className="intake" id="brief">
       {!sent ? (
         <form onSubmit={submit} noValidate aria-describedby="intake-help">
-          <p id="intake-help" className="ihelp">The product brief. It becomes an email in your own mail client — nothing is stored here, and you attach the SDS or TDS yourself before sending.</p>
+          <p id="intake-help" className="ihelp">The product brief. It becomes an email in your own mail client. Nothing is stored here, and you attach the SDS or TDS yourself before sending.</p>
           <div className="grid2">
             <label>Work email<input type="email" required value={f.email} onChange={set('email')} aria-invalid={touched && !emailOk} autoComplete="email" /></label>
             <label>Company<input type="text" required value={f.company} onChange={set('company')} aria-invalid={touched && !f.company.trim()} autoComplete="organization" /></label>
@@ -57,10 +59,11 @@ export function Intake() {
             <label>Annual volume<input type="text" placeholder="e.g. 120 t" value={f.volume} onChange={set('volume')} /></label>
             <label>Delivery location<input type="text" required placeholder="City, country" value={f.destination} onChange={set('destination')} aria-invalid={touched && !f.destination.trim()} /></label>
             <label>Key properties or spec<input type="text" placeholder="The two or three that matter" value={f.properties} onChange={set('properties')} /></label>
+            <label>I want to<select value={f.goal} onChange={set('goal')}>{GOALS.map((c) => <option key={c}>{c}</option>)}</select></label>
             <label>Your current source is<select value={f.current} onChange={set('current')}>{CURRENT.map((c) => <option key={c}>{c}</option>)}</select></label>
           </div>
           <label>Anything else <span className="opt">optional</span><textarea rows={2} placeholder="Geographies to include or avoid, certifications required, what would make this useful" value={f.notes} onChange={set('notes')} /></label>
-          {touched && !valid && <p className="ierr" role="alert">Fill the five required fields — email, company, product, application and delivery location — so the landscape can be scoped.</p>}
+          {touched && !valid && <p className="ierr" role="alert">Fill the five required fields (email, company, product, application and delivery location) so the landscape can be scoped.</p>}
           <div className="ctas" style={{ marginTop: 18 }}>
             <button type="submit" className="btn primary">Compose the brief<span className="arr" aria-hidden="true">→</span></button>
             <span className="inote">Opens in your mail client, addressed and filled in. Attach SDS/TDS there. Nothing is sent until you press send.</span>
@@ -69,7 +72,7 @@ export function Intake() {
       ) : (
         <div className="isent" role="status">
           <div className="label on">Brief composed</div>
-          <p>{isConfigured() ? 'Your mail client should now hold the brief, addressed and ready — attach the SDS or TDS before sending. If it did not open, copy the text below and send it to' : 'Copy the brief below and send it to'} {isConfigured() ? <a href={`mailto:${config.contactEmail}`}>{config.contactEmail}</a> : <span className="mono">the address in the footer</span>}.</p>
+          <p>{isConfigured() ? 'Your mail client should now hold the brief, addressed and ready. Attach the SDS or TDS before sending. If it did not open, copy the text below and send it to' : 'Copy the brief below and send it to'} {isConfigured() ? <a href={`mailto:${config.contactEmail}`}>{config.contactEmail}</a> : <span className="mono">the address in the footer</span>}.</p>
           <pre className="brief" tabIndex={0}>{brief}</pre>
           <div className="ctas">
             <button type="button" className="btn ghost sm" onClick={copy}>{copied ? 'Copied' : 'Copy brief'}</button>

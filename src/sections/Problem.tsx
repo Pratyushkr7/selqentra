@@ -11,7 +11,7 @@ export const Problem = forwardRef<HTMLElement>(function Problem(_, ref) {
       </section>
       <section id="classes" ref={ref} aria-labelledby="h-classes">
         <div className="wrap">
-          <div className="label reveal">01 — The three roles</div>
+          <div className="label reveal">01 · The three roles</div>
           <h2 id="h-classes" className="h-l reveal">Manufacturer, distributor, trader. Each is a different conversation.</h2>
           <p className="lede reveal" style={{ marginTop: 22 }}>From a website, all three look the same. From the evidence, they never do. Every source we identify is placed in exactly one of these columns, with the signals that put it there.</p>
           <div className="roles">
