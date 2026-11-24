@@ -1,12 +1,8 @@
 export const failures = [
   { claimed: 'Manufacturer', found: 'Trading company. No plant, no registration in its own name.' },
   { claimed: 'Exact product', found: 'Product family only. The specific grade never appears.' },
-  { claimed: 'Grade 98% min.', found: 'Grade unspecified on every page that could be found.' },
   { claimed: '"ISO certified"', found: 'A logo image. No certificate number, no certifying body.' },
-  { claimed: 'One supplier', found: 'Two legal entities, one plant. Competitive tension is illusory.' },
-  { claimed: 'Source cited', found: 'Source returns 404, or was last updated in 2019.' },
-  { claimed: 'Plant in stated region', found: 'Registered office only. Production location unknown.' },
-  { claimed: 'Global producer', found: 'Appears in analyst lists by repetition. No primary evidence of production.' },
+  { claimed: 'One supplier', found: 'Two legal entities, one plant. Your "competitive" quotes come from the same place.' },
 ];
 
 export const classes = [
