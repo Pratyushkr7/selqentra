@@ -22,6 +22,6 @@ export const links = {
   demo: () => config.bookingUrl || '#brief',
   brief: () => '#brief',
   sample: () => '#sample',
-  question: () => (config.contactEmail ? `mailto:${config.contactEmail}?subject=${enc('Selqentra — a question')}` : '#brief'),
+  question: () => (config.contactEmail ? `mailto:${config.contactEmail}?subject=${enc('Selqentra: a question')}` : '#brief'),
   mailto: (subject: string, body: string) => `mailto:${config.contactEmail}?subject=${enc(subject)}&body=${enc(body)}`,
 };

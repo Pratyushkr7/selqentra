@@ -3,6 +3,7 @@ import { Nav } from './sections/Nav';
 import { Hero } from './sections/Hero';
 import { Walkthrough } from './sections/Walkthrough';
 import { Problem } from './sections/Problem';
+import { Sides } from './sections/Sides';
 import { Sample } from './sections/Sample';
 import { Receive } from './sections/Receive';
 import { Pilot } from './sections/Pilot';
@@ -18,7 +19,7 @@ export default function App() {
   useLenis(!reduced);
   const root = useRef<HTMLDivElement>(null);
   useReveal(root);
-  const hero = useRef<HTMLElement>(null), problem = useRef<HTMLElement>(null), sample = useRef<HTMLElement>(null), receive = useRef<HTMLElement>(null), pilot = useRef<HTMLElement>(null), fitR = useRef<HTMLElement>(null), methodR = useRef<HTMLElement>(null), closeR = useRef<HTMLElement>(null);
+  const hero = useRef<HTMLElement>(null), problem = useRef<HTMLElement>(null), sample = useRef<HTMLElement>(null), receive = useRef<HTMLElement>(null), pilot = useRef<HTMLElement>(null), fitR = useRef<HTMLElement>(null), methodR = useRef<HTMLElement>(null), closeR = useRef<HTMLElement>(null), sidesR = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const el = hero.current; if (!el) return;
@@ -31,10 +32,11 @@ export default function App() {
       <Nav />
       <main id="main">
         <Hero ref={hero} />
+        <Sides ref={sidesR} />
         <section className="walksec" aria-labelledby="h-walk">
           <div className="wrap center">
             <div className="label reveal">How a landscape is built</div>
-            <h2 id="h-walk" className="h-l reveal">From the product you buy to the people who make it.</h2>
+            <h2 id="h-walk" className="h-l reveal">From the material in question to the people who make it and buy it.</h2>
             <p className="lede reveal" style={{ marginTop: 18 }}>Scroll through one landscape end to end. Switch the sample product to see how the shape of the market changes.</p>
           </div>
           <div className="wrap"><Walkthrough active={!reduced} /></div>
